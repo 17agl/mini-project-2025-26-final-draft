@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Our Programs - Reclaim Your Life</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
+<!-- Styles -->
+<style>
+  body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 40px 20px 20px 20px;
+    background-color: #f9fafb;
+    color: #222;
+  }
+
+  /* Header buttons container */
+  .header-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto 20px auto;
+  }
+
+  /* Home Button */
+  .top-home-button {
+    display: inline-block;
+    padding: 14px 28px;
+    background: linear-gradient(45deg, #00695c, #004d40);
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.3s ease, transform 0.2s ease;
+    letter-spacing: 1px;
+  }
+
+  .top-home-button:hover {
+    background: linear-gradient(45deg, #004d40, #00695c);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    transform: translateY(-3px);
+  }
+
+  /* Start Button */
+  .start-button {
+    padding: 14px 28px;
+    background: #333;
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.3s ease, transform 0.2s ease;
+    letter-spacing: 1px;
+  }
+
+  .start-button:hover {
+    background: #555;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    transform: translateY(-3px);
+  }
+
+  /* Section title styles */
+  .section-title {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #00695c;
+    text-align: center;
+  }
+
+  /* Container for each section with outline */
+  .section-container {
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 40px;
+  }
+
+  /* Card styles for content parts */
+  .card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .card:hover {
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transform: translateY(-2px);
+  }
+
+  /* Program boxes layout side by side */
+  .programs-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  /* Program Box Style */
+  .program-box {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    width: calc(33.333% - 20px);
+    min-width: 250px;
+  }
+
+  .program-box:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  }
+
+  /* Program Title */
+  .program-title {
+    font-size: 1.3em;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #00695c;
+  }
+
+  /* Program Content */
+  .program-content {
+    font-size: 1em;
+    line-height: 1.5;
+  }
+
+  /* Responsive adjustments */
+  @media(max-width: 1024px) {
+    .program-box {
+      width: calc(45% - 20px);
+    }
+  }
+
+  @media(max-width: 768px) {
+    .header-buttons {
+      flex-direction: column;
+    }
+    .top-home-button, .start-button {
+      margin: 10px 0;
+    }
+    .program-box {
+      width: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Header Buttons: Home and Start -->
+<div class="header-buttons">
+  <a href="index.html" class="top-home-button">Home</a>
+  <a href="create_account.html" class="start-button">Start</a>
+</div>
+
+<h1 style="text-align:center;">Our Programs for Different Addictions</h1>
+
+<!-- Digital Addictions Section -->
+<div class="section-container">
+  <h2 class="section-title">1. Digital Addictions (Gaming, Internet & Social Media)</h2>
+  <div class="programs-grid">
+    <div class="program-box">
+      <div class="program-title">Digital Detox Program</div>
+      <div class="program-content">
+        Gradual reduction in screen time with daily digital-free hours.
+      </div>
+    </div>
+    <div class="program-box">
+      <div class="program-title">Mindful Technology Use</div>
+      <div class="program-content">
+        Learn to use technology consciously through guided mindfulness sessions.
+      </div>
+    </div>
+    <div class="program-box">
+      <div class="program-title">Healthy Online Habits Course</div>
+      <div class="program-content">
+        Strategies to set boundaries and prioritize real-life interactions.
+      </div>
+    </div>
+    <div class="program-box">
+      <div class="program-title">Focus Reboot Challenge (21 days)</div>
+      <div class="program-content">
+        Structured plan to replace gaming/social scrolling with creative or fitness activities.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Gambling Addiction Section -->
+<div class="section-container">
+  <h2 class="section-title">2. Gambling Addiction</h2>
+  <div class="programs-grid">
+    <div class="program-box">
+      <div class="program-title">Financial Awareness Program</div>
+      <div class="program-content">
+        Learn money management and impulse control techniques.
+      </div>
+    </div>
+    <div class="program-box">
+      <div class="program-title">Trigger Identification Workshop</div>
+      <div class="program-content">
+        Understand emotional triggers behind betting urges.
+      </div>
+    </div>
+    <div class="program-box">
+      <div class="program-title">Cognitive Behavioral Therapy (CBT) Sessions</div>
+      <div class="program-content">
+        Replace risky thoughts with rational decision-making.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Substance Addictions Section -->
+<div class="section-container">
+  <h2 class="section-title">3. Substance Addictions (Smoking, Drinking)</h2>
+  <div class="programs-grid">
+    <div class="program-box">
+      <div class="program-title">QuitSmart Program</div>
+      <div class="program-content">
+        Personalized quit plans with psychological counseling.
+      </div>
+    </div>
+    <div class="program-box">
+      <div class="program-title">Mind-Body Healing Program</div>
+      <div class="program-content">
+        Focus on meditation, yoga, and breathwork for withdrawal management.
+      </div>
+    </div>
+    <div class="program-box">
+      <div class="program-title">Accountability Partner System</div>
+      <div class="program-content">
+        Pair with a coach or peer for daily motivation.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Food & Emotional Eating Section -->
+<div class="section-container">
+  <h2 class="section-title">4. Food Addiction & Emotional Eating</h2>
+  <div class="programs-grid">
+    <div class="program-box">
+      <div class="program-title">Mindful Eating Program</div>
+      <div class="program-content">
+        Understand hunger vs. emotion-driven eating.
+      </div>
+    </div>
+    <div class="program-box">
+      <div class="program-title">Nutrition Rebalance Course</div>
+      <div class="program-content">
+        Personalized diet planning and journaling.
+      </div>
+    </div>
+    <div class="program-box">
+      <div class="program-title">Emotional Wellness Therapy</div>
+      <div class="program-content">
+        Address anxiety, guilt, or loneliness linked to overeating.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Work & Study Addiction Section -->
+<div class="section-container">
+  <h2 class="section-title">5. Work & Study Addiction</h2>
+  <div class="programs-grid">
+    <div class="program-box">
+      <div class="program-title">Work-Life Balance Program</div>
+      <div class="program-content">
+        Time management and relaxation techniques.
+      </div>
+    </div>
+    <div class="program-box">
+      <div class="program-title">Stress & Burnout Recovery</div>
+      <div class="program-content">
+        Mindfulness and psychological therapy for chronic overworking.
+      </div>
+    </div>
+    <div class="program-box">
+      <div class="program-title">Study Smart Program</div>
+      <div class="program-content">
+        Cognitive techniques to improve focus and reduce compulsive study behavior.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Psychological Support & Guidance Section -->
+<div class="section-container">
+  <h2 class="section-title">6. Psychological Support & Correct Guidance</h2>
+  <div class="programs-grid">
+    <div class="program-box">
+      <div class="program-title">Cognitive Behavioral Therapy (CBT)</div>
+      <div class="program-content">
+        Restructures negative thought patterns.
+      </div>
+    </div>
+    <div class="program-box">
+      <div class="program-title">One-on-One Counseling</div>
+      <div class="program-content">
+        Confidential guidance from licensed therapists.
+      </div>
+    </div>
+    <div class="program-box">
+      <div class="program-title">Mindfulness & Stress Management</div>
+      <div class="program-content">
+        Meditation, journaling, and breathing techniques.
+      </div>
+    </div>
+    <div class="program-box">
+      <div class="program-title">Group Support Circles</div>
+      <div class="program-content">
+        Community-based peer discussions for shared healing.
+      </div>
+    </div>
+    <div class="program-box">
+      <div class="program-title">Goal & Habit Coaching</div>
+      <div class="program-content">
+        Personalized plans and progress tracking.
+      </div>
+    </div>
+    <div class="program-box">
+      <div class="program-title">Emotional Healing Workshops</div>
+      <div class="program-content">
+        Focus on trauma recovery and self-compassion.
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!-- dashboard_home.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Dashboard Home</title>
+<link rel="stylesheet" href="styles.css" />
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<header class="dashboard-header">
+  <h1>My Dashboard</h1>
+  <nav class="dashboard-nav" id="navbar">
+    <a href="dashboard_home.html">Home</a>
+    <a href="dashboard_tasks.html">My Plans</a>
+    <a href="dashboard_challenges.html">Challenges</a>
+    <a href="dashboard_progress.html">Progress</a>
+    <a href="dashboard_rewards.html">Rewards</a>
+    <a href="dashboard_savings.html">Savings</a>
+    <a href="dashboard_motivation.html">Motivation</a>
+    <a href="dashboard_profile.html">Profile</a>
+    <a href="index.html" class="logout-btn" onclick="logout()">Logout</a>
+  </nav>
+</header>
+
+<main>
+  <!-- Welcome & Quick Overview -->
+  <section class="section" style="text-align:center;">
+    <h2>Welcome back, User!</h2>
+    <p>Here’s your journey so far.</p>
+  </section>
+
+  <!-- Daily Target Summary -->
+  <section class="section">
+    <h3>Today’s Targets</h3>
+    <ul>
+      <li>Limit screen time to 2 hours ✅</li>
+      <li>Stay smoke-free for 24 hours ✅</li>
+      <li>Drink 8 glasses of water ✅</li>
+      <li>Complete 10 min mindfulness ✅</li>
+    </ul>
+  </section>
+
+  <!-- Active Challenge -->
+  <section class="section">
+    <h3>Current Challenge</h3>
+    <p>You’re on Day 4 of the 🧘 7-Day Calm Mind Challenge.</p>
+    <button class="btn-primary" onclick="alert('Challenge details coming soon!')">View Challenge Details</button>
+  </section>
+
+  <!-- Progress Snapshot -->
+  <section class="section">
+    <h3>Progress Overview</h3>
+    <canvas id="homeProgressChart" width="400" height="200"></canvas>
+  </section>
+
+  <!-- Motivation & Inspiration -->
+  <section class="section">
+    <h3>Daily Inspiration</h3>
+    <p>"Every small step counts."</p>
+    <p>Keep going, you're doing great!</p>
+  </section>
+
+  <!-- Rewards & Achievements -->
+  <section class="section">
+    <h3>Achievements</h3>
+    <p>You earned the <strong>Consistency Badge</strong>!</p>
+    <button class="btn-primary" onclick="alert('View all rewards!')">View Rewards</button>
+  </section>
+</main>
+
+<script>
+  // Example chart data for progress
+  const ctx = document.getElementById('homeProgressChart').getContext('2d');
+  const progressChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Completed', 'Remaining'],
+      datasets: [{
+        data: [65, 35],
+        backgroundColor: ['#4caf50', '#e0e0e0']
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { position: 'bottom' }
+      }
+    }
+  });
+</script>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Login</title>
+<style>
+  /* Basic Reset & Body Styling */
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Container Styling */
+  .container {
+    background-color: #fff;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+  }
+  .container:hover {
+    box-shadow: 0 12px 24px rgba(0,0,0,0.3);
+    transform: translateY(-2px);
+  }
+
+  /* Heading */
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 2em;
+  }
+
+  /* Form Elements */
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  label {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 1em;
+  }
+
+  input {
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1em;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+
+  input:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 8px rgba(74, 144, 226, 0.3);
+  }
+
+  /* Login Button */
+  button {
+    margin-top: 25px;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    background-color: #4a90e2;
+    color: #fff;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  button:hover {
+    background-color: #357ABD;
+    transform: translateY(-2px);
+  }
+
+  /* Message display for errors/success info */
+  #loginMessage {
+    margin-top: 15px;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  /* Back to Home link styled as button */
+  a.btn.sticky-note {
+    display: inline-block;
+    margin-top: 20px;
+    text-align: center;
+    text-decoration: none;
+    background-color: transparent;
+    color: #4a90e2;
+    font-weight: 600;
+    font-size: 1em;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 2px solid #4a90e2;
+    transition: all 0.3s ease;
+  }
+  a.btn.sticky-note:hover {
+    background-color: #4a90e2;
+    color: #fff;
+    transform: translateY(-1px);
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+<h2>Login</h2>
+<form id="loginForm" onsubmit="return handleLogin()">
+  <label for="email">Email:</label>
+  <input type="email" id="email" required />
+
+  <label for="password">Password:</label>
+  <input type="password" id="password" required />
+
+  <button type="submit">Login</button>
+</form>
+<div id="loginMessage"></div>
+<a href="index.html" class="btn sticky-note">Back to Home</a>
+</div>
+
+<script>
+  function handleLogin() {
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+
+    // Retrieve registered user data from localStorage
+    const userStr = localStorage.getItem('user');
+
+    if (!userStr) {
+      alert('No user registered. Please register first.');
+      return false;
+    }
+
+    const user = JSON.parse(userStr);
+    if (user.email === email && user.password === password) {
+      // Mark as logged in and redirect to dashboard
+      localStorage.setItem('loggedIn', 'true');
+      window.location.href='dashboard_home.html';
+    } else {
+      alert('Invalid email or password.');
+    }
+    return false; // prevent form default submit
+  }
+</script>
+
+</body>
+</html>

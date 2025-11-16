@@ -1,0 +1,179 @@
+<!-- dashboard_motivation.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Motivation & Support</title>
+<link rel="stylesheet" href="styles.css" />
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #fafafa;
+    margin: 0;
+    padding: 0;
+  }
+  .dashboard-header {
+    background-color: #333;
+    color: #fff;
+    padding: 15px;
+  }
+  .dashboard-header h1 {
+    margin: 0;
+  }
+  .dashboard-nav {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .dashboard-nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+  }
+  .dashboard-nav a:hover, .dashboard-nav a.active {
+    background-color: #555;
+  }
+  main {
+    padding: 20px;
+    max-width: 1000px;
+    margin: auto;
+  }
+  h2 {
+    color: #333;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 5px;
+    margin-top: 40px;
+  }
+  /* Style for support sections */
+  .section {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  .section h3 {
+    margin-top: 0;
+  }
+  ul {
+    padding-left: 20px;
+  }
+  /* Motivational quote styling */
+  #motivationalQuotes {
+    text-align: center;
+    font-size: 1.8em;
+    font-weight: bold;
+    margin: 20px 0;
+    padding: 10px;
+    background-color: #e0f7fa;
+    border-radius: 8px;
+  }
+</style>
+</head>
+<body>
+<header class="dashboard-header">
+  <h1>Motivation</h1>
+  <nav class="dashboard-nav" id="navbar">
+    <a href="dashboard_home.html">Home</a>
+    <a href="dashboard_tasks.html">My Plans</a>
+    <a href="dashboard_challenges.html">Challenges</a>
+    <a href="dashboard_progress.html">Progress</a>
+    <a href="dashboard_rewards.html">Rewards</a>
+    <a href="dashboard_savings.html">Savings</a>
+    <a href="dashboard_motivation.html">Motivation</a>
+    <a href="dashboard_profile.html">Profile</a>
+    <a href="index.html" class="logout-btn" onclick="logout()">Logout</a>
+  </nav>
+</header>
+
+<main>
+<!-- <h2>Daily Motivational Quotes</h2>
+<div id="motivationalQuotes" style="text-align:center; font-size:1.5em; padding:20px;"></div>
+<h2>Success Stories & Testimonials</h2>
+<div style="padding:20px; background:#e1f5fe; border-radius:10px;">
+  <p>"I replaced nightly drinks with mindfulness."</p>
+  <p>"Guiding Vision gave me the structure to break free."</p>
+</div>
+<h2>Community Support</h2>
+<div style="padding:20px; background:#ffe0b2; border-radius:10px;">
+  <p>Join today’s support group chat.</p>
+  <p>Read how others overcame challenges.</p>
+</div>
+<h2>Self-Help & Exercises</h2>
+<div style="padding:20px; background:#d1c4e9; border-radius:10px;">
+  <p>Try today’s mindfulness session.</p>
+</div>
+<h2>Positive Messages</h2>
+<div style="padding:20px; background:#aed581; border-radius:10px;">
+  <p>"You showed up today — that’s what matters."</p>
+</div> -->
+<div id="motivationalQuotes"></div>
+
+<h2>Inspiration & Support</h2>
+<div class="section">
+  <h3>Guiding Vision Wellness</h3>
+  <p>Short, uplifting messages to keep you positive:</p>
+  <ul>
+    <li>“Recovery is not a race — it’s a journey of strength and self-love.”</li>
+    <li>“Every small step forward is progress, no matter how slow.”</li>
+    <li>“You are stronger than the urge. Keep choosing yourself.”</li>
+    <li>“Healing doesn’t mean the damage never existed; it means it no longer controls your life.”</li>
+  </ul>
+</div>
+
+<h2>Success Stories & Testimonials</h2>
+<div class="section">
+  <h3>Real Stories</h3>
+  <p>"I replaced nightly drinks with mindfulness."</p>
+  <p>"Guiding Vision gave me the structure to break free."</p>
+</div>
+
+<h2>Community Support</h2>
+<div class="section">
+  <h3>Join the Community</h3>
+  <ul>
+    <li>Peer forums or group chats for sharing struggles and wins.</li>
+    <li>Weekly live support sessions with psychologists or coaches.</li>
+    <li>Anonymous support option for privacy and safety.</li>
+  </ul>
+  <p>"You are not alone — connect with others walking the same path."</p>
+</div>
+
+<h2>Guided Self-Help & Emotional Tools</h2>
+<div class="section">
+  <h3>Exercises & Prompts</h3>
+  <ul>
+    <li>Breathing and mindfulness audios</li>
+    <li>Journaling prompts like “What made me proud today?”</li>
+    <li>Visualization or relaxation techniques</li>
+  </ul>
+</div>
+
+<h2>Positive Reinforcement Messages</h2>
+<div class="section">
+  <h3>Keep Going!</h3>
+  <p>"You showed up today — that’s what matters."</p>
+  <p>"You’ve made incredible progress this week. Be proud."</p>
+  <p>"Healing takes time, and you’re doing it beautifully."</p>
+</div>
+</main>
+<script>
+  // Array of motivational quotes
+  const quotes = [
+    "Recovery is not a race — it’s a journey.",
+    "Every small step is progress.",
+    "You are stronger than the urge.",
+    "Healing means the damage no longer controls you."
+  ];
+
+  function loadQuotes() {
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    document.getElementById('motivationalQuotes').innerText = quotes[randomIndex];
+  }
+
+  document.addEventListener('DOMContentLoaded', loadQuotes);
+</script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Privacy Policy - Reclaim Your Life</title>
+<!-- Google Fonts for typography -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+<!-- Styles -->
+<style>
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    background-color: #f9fafb;
+    color: #222;
+    padding: 20px;
+    max-width: 900px;
+    margin: auto;
+  }
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #00695c;
+  }
+  h2 {
+    margin-top: 30px;
+    color: #00695c;
+  }
+  p {
+    margin-bottom: 20px;
+  }
+  a {
+    color: #00695c;
+    text-decoration: underline;
+  }
+  /* Buttons styling */
+  .btn {
+    padding: 12px 24px;
+    margin: 10px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1em;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s;
+  }
+  .btn-accept {
+    background-color: #4CAF50;
+    color: #fff;
+  }
+  .btn-accept:hover {
+    background-color: #388E3C;
+  }
+  .btn-decline {
+    background-color: #f44336;
+    color: #fff;
+  }
+  .btn-decline:hover {
+    background-color: #d32f2f;
+  }
+  /* Hidden options container */
+  #options-container {
+    display: none;
+    margin-top: 20px;
+    text-align: center;
+  }
+  /* Option buttons for 'Home' and 'Next' */
+  .option-btn {
+    padding: 12px 24px;
+    margin: 10px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1em;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s;
+  }
+  .btn-home {
+    background-color: #00695c;
+    color: #fff;
+  }
+  .btn-home:hover {
+    background-color: #004d40;
+  }
+  .btn-next {
+    background-color: #007BFF;
+    color: #fff;
+  }
+  .btn-next:hover {
+    background-color: #0056b3;
+  }
+  /* Responsive adjustments */
+  @media(max-width: 600px){
+    body {
+      padding: 10px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<h1>Privacy Policy</h1>
+
+<h2>Introduction</h2>
+<p>Your trust is our top priority. We handle all your personal information with strict confidentiality and ensure your privacy is protected. This Privacy Policy explains how we collect, use, and safeguard your information.</p>
+
+<h2>Information We Collect</h2>
+<p>We collect only the necessary data to provide our services, including your contact details and any information you voluntarily share during registration or interactions.</p>
+
+<h2>How We Use Your Data</h2>
+<p>Your data is used solely to improve our platform, provide personalized support, and communicate important updates. We do not sell or share your data with third parties without your consent.</p>
+
+<h2>Data Security</h2>
+<p>We implement appropriate security measures to protect your personal data against unauthorized access, alteration, disclosure, or destruction.</p>
+
+<h2>Cookies and Tracking</h2>
+<p>We use cookies to enhance your experience on our website. You can configure your browser to refuse cookies or alert you when cookies are being sent.</p>
+
+<h2>Your Rights</h2>
+<p>You have the right to access, update, or delete your personal information. To exercise these rights, please contact us at <a href="mailto:support@yourdomain.com">support@yourdomain.com</a>.</p>
+
+<h2>Changes to This Policy</h2>
+<p>We may update this Privacy Policy periodically. Any changes will be posted on this page with an updated date.</p>
+
+<h2>Contact Us</h2>
+<p>If you have questions or concerns about our privacy practices, please contact us at <a href="mailto:support@yourdomain.com">support@yourdomain.com</a>.</p>
+
+<!-- Buttons for Accept/Decline -->
+<div style="text-align: center; margin-top: 30px;">
+  <button class="btn btn-accept" onclick="acceptPolicy()">Accept</button>
+  <button class="btn btn-decline" onclick="declinePolicy()">Decline</button>
+</div>
+
+<!-- Options for after accepting -->
+<div id="options-container">
+  <h3>Thank you for accepting our Privacy Policy. Please choose where you'd like to go:</h3>
+  <button class="option-btn btn-home" onclick="goHome()">Home</button>
+  <button class="option-btn btn-next" onclick="goNext()">Next</button>
+</div>
+
+<!-- Scripts -->
+<script>
+  function acceptPolicy() {
+    document.getElementById('options-container').style.display = 'block';
+  }
+
+  function declinePolicy() {
+    // Redirect to main website page (update URL as needed)
+    window.location.href = "index.html"; // change to your main page URL
+  }
+
+  function goHome() {
+    // Redirect to main website page
+    window.location.href = "index.html"; // change if different
+  }
+
+  function goNext() {
+    // Redirect to create account page
+    window.location.href = "create_account.html"; // change if different
+  }
+</script>
+
+</body>
+</html>

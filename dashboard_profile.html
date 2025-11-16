@@ -1,0 +1,302 @@
+<!-- dashboard_profile.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>User Profile</title>
+<link rel="stylesheet" href="styles.css" />
+<style>
+  /* Add some basic styles for better appearance */
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+.profile-section {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+h2 {
+  margin-top: 0;
+}
+button {
+  margin-top: 10px;
+}
+input[type="file"] {
+  display: block;
+  margin-top: 10px;
+}
+.confidential-note {
+  font-size: 0.9em;
+  color: #555;
+}
+.progress-bar-container {
+  width: 100%;
+  background-color: #eee;
+  border-radius: 5px;
+  overflow: hidden;
+  height: 20px;
+  margin-top: 10px;
+}
+.progress-bar {
+  height: 100%;
+  background-color: #4caf50;
+}
+</style>
+
+</head>
+<body>
+<header class="dashboard-header">
+  <h1>My Profile</h1>
+  <nav class="dashboard-nav" id="navbar">
+    <a href="dashboard_home.html">Home</a>
+    <a href="dashboard_tasks.html">My Plans</a>
+    <a href="dashboard_challenges.html">Challenges</a>
+    <a href="dashboard_progress.html">Progress</a>
+    <a href="dashboard_rewards.html">Rewards</a>
+    <a href="dashboard_savings.html">Savings</a>
+    <a href="dashboard_motivation.html">Motivation</a>
+    <a href="dashboard_profile.html">Profile</a>
+    <a href="index.html" class="logout-btn" onclick="logout()">Logout</a>
+  </nav>
+</header>
+
+<main>
+  <div class="profile-container">
+    <!-- 1. Personal Information -->
+    <section class="profile-section" id="personal-info">
+      <h2>Personal Information</h2>
+      <p><strong>Name / Username:</strong> <span id="userNameDisplay"></span></p>
+      <p><strong>Email ID:</strong> <span id="userEmailDisplay"></span></p>
+      <p><strong>Date Joined / Account Created:</strong> <span id="dateJoinedDisplay"></span></p>
+      <p><strong>Last Login / Active Since:</strong> <span id="lastLoginDisplay"></span></p>
+      <p><strong>Preferred Language / Region:</strong> <span id="regionDisplay"></span></p>
+      <button class="btn" onclick="editSection('personal-info')">Edit</button>
+    </section>
+
+    <!-- 2. Addiction Focus Area -->
+    <section class="profile-section" id="addiction-focus">
+      <h2>Addiction Focus Area</h2>
+      <p><strong>Selected Addiction(s):</strong> <span id="addictionsDisplay"></span></p>
+      <p><strong>Primary Goal:</strong> <span id="primaryGoalDisplay"></span></p>
+      <p><strong>Start Date:</strong> <span id="startDateDisplay"></span></p>
+      <p><strong>Stage of Progress:</strong> <span id="progressStageDisplay"></span></p>
+      <button class="btn" onclick="editSection('addiction-focus')">Edit</button>
+    </section>
+
+    <!-- 3. Progress Snapshot -->
+    <section class="profile-section" id="progress-snapshot">
+      <h2>Progress Snapshot</h2>
+      <p><strong>Total Challenges Completed:</strong> <span id="challengesDisplay"></span></p>
+      <p><strong>Badges Earned / Achievements:</strong> <span id="badgesDisplay"></span></p>
+      <p><strong>Current Streak (Days Active):</strong> <span id="streakDisplay"></span></p>
+      <p><strong>Total Money Saved:</strong> <span id="moneySavedDisplay"></span></p>
+      <p><strong>Overall Recovery Score / Level:</strong> <span id="recoveryScoreDisplay"></span></p>
+      <div class="progress-bar-container">
+        <div class="progress-bar" id="progressBar" style="width: 0%;"></div>
+      </div>
+    </section>
+
+    <!-- 4. Psychological Support Summary -->
+    <section class="profile-section" id="support-summary">
+      <h2>Psychological Support Summary</h2>
+      <p><strong>Sessions Attended:</strong> <span id="sessionsDisplay"></span></p>
+      <p><strong>Mindfulness / Journal Entries:</strong> <span id="journalEntriesDisplay"></span></p>
+      <p><strong>Most Used Support Tools:</strong> <span id="supportToolsDisplay"></span></p>
+    </section>
+
+    <!-- 5. Privacy & Settings -->
+    <section class="profile-section" id="privacy-settings">
+      <h2>Privacy & Settings</h2>
+      <button class="btn" onclick="manageSecurity()">Manage Account Security</button>
+      <button class="btn" onclick="setNotifications()">Notification Preferences</button>
+      <button class="btn" onclick="adjustTheme()">Theme / Accessibility</button>
+      <button class="btn btn-danger" onclick="deactivateAccount()">Deactivate / Delete Account</button>
+      <p class="confidential-note">Your data is confidential and securely stored.</p>
+    </section>
+
+    <!-- 6. Personal Reflection Space -->
+    <section class="profile-section" id="reflection-space">
+      <h2>My Reflections</h2>
+      <textarea id="reflections" placeholder="Write your thoughts, wins, or feelings here..." rows="4"></textarea>
+      <h3>My Motivation</h3>
+      <textarea id="motivation" placeholder="Share your motivation or quotes..." rows="3"></textarea>
+      <h3>Upload Motivational Photo / Goal Image</h3>
+      <input type="file" accept="image/*" id="motivationImage" onchange="previewImage(event)" />
+      <img id="imagePreview" src="" alt="Motivational Image Preview" style="max-width: 200px; display:none; margin-top:10px;" />
+    </section>
+  </div>
+</main>
+<script>
+  // Load profile details
+
+  // function loadProfileDetails() {
+  //   const user = JSON.parse(localStorage.getItem('user'));
+  //   if (user) {
+  //     document.getElementById('profileDetails').innerHTML = `
+  //       <img src="${user.profilePhoto || 'https://via.placeholder.com/150'}" class="profile-img"/>
+  //       <p>Name: ${user.name}</p>
+  //       <p>Email: ${user.email}</p>
+  //       <p>Age: ${user.age || 'N/A'}</p>
+  //       <p>Gender: ${user.gender || 'N/A'}</p>
+  //     `;
+  //   }
+  // }
+
+  // function editProfile() {
+  //   document.getElementById('editProfile').style.display='block';
+  //   document.getElementById('profileDetails').style.display='none';
+
+  //   const user = JSON.parse(localStorage.getItem('user'));
+  //   if (user) {
+  //     document.getElementById('editName').value = user.name;
+  //     document.getElementById('editEmail').value = user.email;
+  //     document.getElementById('editAge').value = user.age || '';
+  //     document.getElementById('editGender').innerHTML = `
+  //       <option value="Male" ${user.gender==='Male'?'selected':''}>Male</option>
+  //       <option value="Female" ${user.gender==='Female'?'selected':''}>Female</option>
+  //       <option value="Other" ${user.gender==='Other'?'selected':''}>Other</option>
+  //     `;
+  //     document.getElementById('editPhoto').value = user.profilePhoto || '';
+  //   }
+  // }
+
+  // Save profile edits
+
+  // document.getElementById('profileForm').addEventListener('submit', (e) => {
+  //   e.preventDefault();
+  //   const user = JSON.parse(localStorage.getItem('user'));
+  //   user.name = document.getElementById('editName').value;
+  //   user.email = document.getElementById('editEmail').value;
+  //   user.age = document.getElementById('editAge').value;
+  //   user.gender = document.getElementById('editGender').value;
+  //   user.profilePhoto = document.getElementById('editPhoto').value;
+  //   localStorage.setItem('user', JSON.stringify(user));
+  //   alert('Profile updated!');
+  //   document.getElementById('editProfile').style.display='none';
+  //   loadProfileDetails();
+  // });
+
+  // Load on page load
+
+  // document.addEventListener('DOMContentLoaded', loadProfileDetails);
+  
+
+  // Placeholder functions for editing sections
+
+  // Load data from localStorage on page load
+window.onload = function() {
+  loadProfileData();
+};
+
+function loadProfileData() {
+  // Personal Info
+  document.getElementById('userNameDisplay').textContent = localStorage.getItem('userName') || '';
+  document.getElementById('userEmailDisplay').textContent = localStorage.getItem('userEmail') || '';
+  document.getElementById('dateJoinedDisplay').textContent = localStorage.getItem('dateJoined') || '';
+  document.getElementById('lastLoginDisplay').textContent = localStorage.getItem('lastLogin') || '';
+  document.getElementById('regionDisplay').textContent = localStorage.getItem('region') || '';
+
+  // Addiction Focus
+  document.getElementById('addictionsDisplay').textContent = localStorage.getItem('addictions') || '';
+  document.getElementById('primaryGoalDisplay').textContent = localStorage.getItem('primaryGoal') || '';
+  document.getElementById('startDateDisplay').textContent = localStorage.getItem('startDate') || '';
+  document.getElementById('progressStageDisplay').textContent = localStorage.getItem('progressStage') || '';
+
+  // Progress Snapshot
+  document.getElementById('challengesDisplay').textContent = localStorage.getItem('challenges') || '';
+  document.getElementById('badgesDisplay').textContent = localStorage.getItem('badges') || '';
+  document.getElementById('streakDisplay').textContent = localStorage.getItem('streak') || '';
+  document.getElementById('moneySavedDisplay').textContent = localStorage.getItem('moneySaved') || '';
+  document.getElementById('recoveryScoreDisplay').textContent = localStorage.getItem('recoveryScore') || '';
+
+  // Support Summary
+  document.getElementById('sessionsDisplay').textContent = localStorage.getItem('sessions') || '';
+  document.getElementById('journalEntriesDisplay').textContent = localStorage.getItem('journalEntries') || '';
+  document.getElementById('supportToolsDisplay').textContent = localStorage.getItem('supportTools') || '';
+
+  // Reflection and Motivation
+  document.getElementById('reflections').value = localStorage.getItem('reflections') || '';
+  document.getElementById('motivation').value = localStorage.getItem('motivation') || '';
+
+  // Image preview
+  const imageUrl = localStorage.getItem('motivationImage');
+  if (imageUrl) {
+    document.getElementById('imagePreview').src = imageUrl;
+    document.getElementById('imagePreview').style.display = 'block';
+  }
+
+  // Example to set progress bar
+  const progressPercent = localStorage.getItem('progressPercent') || '0';
+  document.getElementById('progressBar').style.width = progressPercent + '%';
+}
+
+// Function to save data
+function saveProfileData() {
+  // Personal Info
+  // You might want to get these values from input fields if you implement editing
+  // For now, just save existing displayed data
+  // For real scenario, replace with data from input fields
+  localStorage.setItem('userName', document.getElementById('userNameDisplay').textContent);
+  localStorage.setItem('userEmail', document.getElementById('userEmailDisplay').textContent);
+  localStorage.setItem('dateJoined', document.getElementById('dateJoinedDisplay').textContent);
+  localStorage.setItem('lastLogin', document.getElementById('lastLoginDisplay').textContent);
+  localStorage.setItem('region', document.getElementById('regionDisplay').textContent);
+
+  // Addiction Focus
+  localStorage.setItem('addictions', document.getElementById('addictionsDisplay').textContent);
+  localStorage.setItem('primaryGoal', document.getElementById('primaryGoalDisplay').textContent);
+  localStorage.setItem('startDate', document.getElementById('startDateDisplay').textContent);
+  localStorage.setItem('progressStage', document.getElementById('progressStageDisplay').textContent);
+
+  // Progress Snapshot
+  localStorage.setItem('challenges', document.getElementById('challengesDisplay').textContent);
+  localStorage.setItem('badges', document.getElementById('badgesDisplay').textContent);
+  localStorage.setItem('streak', document.getElementById('streakDisplay').textContent);
+  localStorage.setItem('moneySaved', document.getElementById('moneySavedDisplay').textContent);
+  localStorage.setItem('recoveryScore', document.getElementById('recoveryScoreDisplay').textContent);
+  localStorage.setItem('progressPercent', document.getElementById('progressBar').style.width.replace('%',''));
+
+  // Support Summary
+  localStorage.setItem('sessions', document.getElementById('sessionsDisplay').textContent);
+  localStorage.setItem('journalEntries', document.getElementById('journalEntriesDisplay').textContent);
+  localStorage.setItem('supportTools', document.getElementById('supportToolsDisplay').textContent);
+
+  // Reflection and Motivation
+  localStorage.setItem('reflections', document.getElementById('reflections').value);
+  localStorage.setItem('motivation', document.getElementById('motivation').value);
+
+  // Image
+  const imgSrc = document.getElementById('imagePreview').src;
+  if (imgSrc) {
+    localStorage.setItem('motivationImage', imgSrc);
+  }
+  alert('Profile saved!');
+}
+
+function editSection(sectionId) {
+  alert(`Editing section: ${sectionId} (You can implement input fields to update data here)`);
+  // Example: Show input fields to update data
+}
+
+// Image preview function
+function previewImage(event) {
+  const reader = new FileReader();
+  reader.onload = function() {
+    document.getElementById('imagePreview').src = reader.result;
+    document.getElementById('imagePreview').style.display = 'block';
+  }
+  reader.readAsDataURL(event.target.files[0]);
+}
+
+// Placeholder functions for other buttons
+function manageSecurity() { alert('Manage Security'); }
+function setNotifications() { alert('Notification Preferences'); }
+function adjustTheme() { alert('Adjust Theme / Accessibility'); }
+function deactivateAccount() { if (confirm('Are you sure?')) alert('Account deactivated.'); }
+
+</script>
+</body>
+</html>

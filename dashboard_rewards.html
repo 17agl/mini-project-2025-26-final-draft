@@ -1,0 +1,222 @@
+<!-- dashboard_rewards.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Rewards & Achievements</title>
+<link rel="stylesheet" href="styles.css" />
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #fafafa;
+    margin: 0;
+    padding: 0;
+  }
+  .dashboard-header {
+    background-color: #333;
+    color: #fff;
+    padding: 15px;
+  }
+  .dashboard-header h1 {
+    margin: 0;
+  }
+  .dashboard-nav {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .dashboard-nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+  }
+  .dashboard-nav a.active, .dashboard-nav a:hover {
+    background-color: #555;
+  }
+  main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+  }
+  h2 {
+    color: #333;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 5px;
+    margin-top: 40px;
+  }
+  /* Card styling for sections */
+  .section {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  /* Badges grid in cards */
+  .badges-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+  }
+  /* Badge card styles */
+  .badge {
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: background-color 0.3s, border 0.3s;
+    cursor: default;
+  }
+  /* Streaks & Rewards cards */
+  .achievement-card {
+    padding: 10px;
+    border-radius: 8px;
+    border: 2px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+  /* Specific styles for streaks based on achievement */
+  .streak-achieved {
+    background-color: #c8e6c9; /* light green */
+    border-color: #388e3c; /* dark green */
+  }
+  .streak-not-achieved {
+    background-color: #ffe0b2; /* light orange */
+    border-color: #f57c00; /* darker orange */
+  }
+  /* Rewards & progress styles */
+  .item {
+    background-color: #f1f8e9;
+    padding: 10px;
+    border-radius: 6px;
+  }
+</style>
+
+</head>
+<body>
+<header class="dashboard-header">
+  <h1>Rewards</h1>
+  <nav class="dashboard-nav" id="navbar">
+    <a href="dashboard_home.html">Home</a>
+    <a href="dashboard_tasks.html">My Plans</a>
+    <a href="dashboard_challenges.html">Challenges</a>
+    <a href="dashboard_progress.html">Progress</a>
+    <a href="dashboard_rewards.html">Rewards</a>
+    <a href="dashboard_savings.html">Savings</a>
+    <a href="dashboard_motivation.html">Motivation</a>
+    <a href="dashboard_profile.html">Profile</a>
+    <a href="index.html" class="logout-btn" onclick="logout()">Logout</a>
+  </nav>
+</header>
+
+<main>
+<h2>Badges Earned</h2>
+<div id="badgesContainer" class="badges-grid"></div>
+
+<h2>Streaks & Consistency</h2>
+<div class="section streaks" id="streaksSection"></div>
+
+<h2>Unlockable Rewards</h2>
+<div class="section rewards" id="rewardsSection"></div>
+
+<h2>Motivational Feedback</h2>
+<div class="section" id="motivationMessage"></div>
+
+<h2>Progress Summary</h2>
+<div class="section progress-summary" id="progressSummary"></div>
+</main>
+
+<script>
+   // Sample user data
+  const userData = {
+    badges: [
+      { name: 'First Step Badge', description: 'Joined and completed Day 1 successfully.' },
+      { name: 'Detox Hero', description: 'Completed “No-Screen Sunday” challenge.' },
+      { name: 'Mindful Morning', description: '7 days of device-free mornings.' }
+    ],
+    streaks: {
+      daily: 10,
+      weekly: 3,
+      level: 2,
+      achievedStreak: true // simulate whether streak is achieved
+    },
+    rewards: {
+      quotesUnlocked: 5,
+      videosUnlocked: 2,
+      exercisesAccess: true,
+      points: 150,
+      nextReward: 'Premium Meditation Audio'
+    },
+    achievements: {
+      badgesCount: 4,
+      currentLevel: 2,
+      pointsEarned: 150
+    }
+  };
+
+  // Populate Badges
+  const badgesContainer = document.getElementById('badgesContainer');
+  userData.badges.forEach(badge => {
+    const div = document.createElement('div');
+    div.className='badge item';
+    div.innerHTML = `<strong>${badge.name}</strong><br/>${badge.description}`;
+    badgesContainer.appendChild(div);
+  });
+
+  // Populate Streaks & Consistency with color change
+  const streaksDiv = document.getElementById('streaksSection');
+  const streakAchievedClass = userData.streaks.achievedStreak ? 'streak-achieved' : 'streak-not-achieved';
+
+  streaksDiv.innerHTML = `
+    <div class="achievement-card ${streakAchievedClass}">
+      <strong>🔥 Daily Streak:</strong> ${userData.streaks.daily} days
+    </div>
+    <div class="achievement-card ${streakAchievedClass}">
+      <strong>🌟 Weekly Commitment:</strong> ${userData.streaks.weekly} days
+    </div>
+    <div class="achievement-card ${streakAchievedClass}">
+      <strong>🎯 Level:</strong> ${userData.streaks.level}
+    </div>
+  `;
+
+  // Populate Unlockable Rewards
+  const rewardsDiv = document.getElementById('rewardsSection');
+  rewardsDiv.innerHTML = `
+    <div class="achievement-card">
+      <strong>Motivational Quotes Unlocked:</strong> ${userData.rewards.quotesUnlocked}
+    </div>
+    <div class="achievement-card">
+      <strong>Videos Unlocked:</strong> ${userData.rewards.videosUnlocked}
+    </div>
+    <div class="achievement-card">
+      <strong>Premium Exercises Access:</strong> ${userData.rewards.exercisesAccess ? 'Yes' : 'No'}
+    </div>
+    <div class="achievement-card">
+      <strong>Points Earned:</strong> ${userData.rewards.points}
+    </div>
+    <div class="achievement-card">
+      <strong>Next Reward:</strong> ${userData.rewards.nextReward}
+    </div>
+  `;
+
+  // Populate Motivational Feedback
+  const messages = [
+    "You’re becoming stronger every day.",
+    "Consistency beats motivation — keep going!",
+    "Small wins lead to great transformations."
+  ];
+  const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+  document.getElementById('motivationMessage').innerHTML = `<p style="font-size:1.2em;">"${randomMessage}"</p>`;
+
+  // Populate Progress Summary
+  const progressDiv = document.getElementById('progressSummary');
+  progressDiv.innerHTML = `
+    <div class="item"><strong>Total Badges Earned:</strong> ${userData.achievements.badgesCount}</div>
+    <div class="item"><strong>Current Level:</strong> ${userData.achievements.currentLevel}</div>
+    <div class="item"><strong>Points Earned:</strong> ${userData.achievements.pointsEarned}</div>
+    <div class="item"><strong>Next Reward:</strong> ${userData.rewards.nextReward}</div>
+  `;
+</script>
+</body>
+</html>

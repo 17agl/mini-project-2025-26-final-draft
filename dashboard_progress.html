@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Progress & Insights</title>
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* Reset and base styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #ece9e6, #ffffff);
+  color: #444;
+  line-height: 1.6;
+}
+
+/* Header styling with gradient and shadow for prominence */
+.dashboard-header {
+  background: linear-gradient(135deg, #4CAF50, #81C784);
+  color: #fff;
+  padding: 20px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  border-radius: 0 0 15px 15px;
+  margin-bottom: 25px;
+}
+
+.dashboard-header h1 {
+  font-size: 2em;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+/* Navigation menu with hover effects */
+.dashboard-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.dashboard-nav a {
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.2);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1em;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  backdrop-filter: blur(4px);
+}
+.dashboard-nav a:hover {
+  background: #fff;
+  color: #388E3C;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transform: translateY(-2px);
+}
+.logout-btn {
+  background-color: #d32f2f;
+  font-weight: 700;
+}
+.logout-btn:hover {
+  background-color: #b71c1c;
+}
+  /* Navigation Bar Styling */
+.navbar {
+  background-color: #388E3C; /* Same as section headers for consistency */
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  margin-bottom: 20px;
+}
+
+.navbar h1 {
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+  font-size: 2em;
+  margin: 0;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1em;
+  transition: color 0.3s, transform 0.2s;
+}
+
+.nav-links a:hover {
+  color: #dcedc8; /* Light color for hover effect */
+  transform: translateY(-2px);
+}
+
+.logout-btn {
+  background-color: #e53935; /* Same as your logout button */
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.logout-btn:hover {
+  background-color: #c62828;
+}
+
+/* Reset & Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: 'Roboto', sans-serif;
+  background: #f0f4f8;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Container */
+main {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+/* Header styles (if needed) */
+h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #2c3e50;
+}
+
+/* Section styling */
+.progress-section {
+  background: #fff;
+  border-radius: 20px;
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+/* Section titles */
+h3 {
+  font-size: 1.8em;
+  margin-bottom: 20px;
+  color: #388E3C;
+  border-bottom: 2px solid #66bb6a;
+  padding-bottom: 10px;
+}
+
+/* Info lines */
+p {
+  margin: 10px 0;
+  font-size: 1.1em;
+}
+strong {
+  color: #555;
+}
+
+/* Canvas styles for charts */
+canvas {
+  display: block;
+  width: 100% !important;
+  height: auto !important;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+/* Quotes / reflections */
+p em {
+  display: block;
+  margin-top: 10px;
+  font-style: italic;
+  color: #555;
+  font-size: 1.1em;
+  padding-left: 10px;
+  border-left: 4px solid #66bb6a;
+}
+
+/* Responsive adjustments */
+@media(max-width: 768px) {
+  main {
+    padding: 10px;
+  }
+  h3 {
+    font-size: 1.5em;
+  }
+}
+</style>
+</head>
+<body>
+
+<header class="dashboard-header">
+  <h1>Progress</h1>
+  <nav class="dashboard-nav" id="navbar">
+    <a href="dashboard_home.html">Home</a>
+    <a href="dashboard_tasks.html">My Plans</a>
+    <a href="dashboard_challenges.html">Challenges</a>
+    <a href="dashboard_progress.html">Progress</a>
+    <a href="dashboard_rewards.html">Rewards</a>
+    <a href="dashboard_savings.html">Savings</a>
+    <a href="dashboard_motivation.html">Motivation</a>
+    <a href="dashboard_profile.html">Profile</a>
+    <a href="index.html" class="logout-btn" onclick="logout()">Logout</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- User Data Input Form -->
+<h2>User Progress Report</h2>
+
+<!-- 1. User Overview -->
+<div class="progress-section">
+  <h3>User Overview</h3>
+  <p><strong>Name / ID:</strong> <span id="userName">User Name / ID</span></p>
+  <p><strong>Addiction Type:</strong> <span id="addictionType">Gaming / Smoking / Social Media</span></p>
+  <p><strong>Program Enrolled:</strong> <span id="program">Digital Detox Program / QuitSmart / Mindful Recovery</span></p>
+  <p><strong>Start Date & Current Day:</strong> <span id="startDate">2024-01-01</span> / <span id="currentDay">Day 15</span></p>
+  <p><strong>Recovery Goal:</strong> <span id="recoveryGoal">Quit completely / Reduce screen time / Build self-control</span></p>
+</div>
+
+<!-- 2. Overall Progress Summary -->
+<div class="progress-section">
+  <h3>Overall Progress</h3>
+  <p><strong>Recovery Percentage:</strong> <span id="recoveryPercent">You’ve completed 65% of your plan!</span></p>
+  <p><strong>Days of Consistency / Streak:</strong> <span id="streak">12 days without relapse!</span></p>
+  <p><strong>Level / Milestone Achieved:</strong> <span id="milestone">Level 3: Mind Control Achieved</span></p>
+  <p><strong>Next Goal / Target:</strong> <span id="nextGoal">Stay consistent for the next 5 days to unlock “Resilience Badge.”</span></p>
+  <p>🏆 “Every step forward is proof of your strength.”</p>
+</div>
+
+<!-- 3. Emotional & Psychological Insights -->
+<div class="progress-section">
+  <h3>Mental Well-being</h3>
+  <canvas id="moodTrendChart" width="400" height="200"></canvas>
+  <p><strong>Stress Level (1–10):</strong> <span id="stressLevel">3/10</span></p>
+  <p><strong>Motivation Level:</strong> <span id="motivationLevel">High / Medium / Low</span></p>
+  <p><strong>Journaling Reflection:</strong> <em>"Your calmness has increased by 20% since last week — keep it up!"</em></p>
+</div>
+
+<!-- 4. Activity & Challenge Performance -->
+<div class="progress-section">
+  <h3>Activity & Challenge Performance</h3>
+  <p><strong>Challenges Completed:</strong> <span id="challengesCompleted">No-Screen Sunday ✅, Mindful Sip Challenge ✅</span></p>
+  <p><strong>Current Active Challenge:</strong> <span id="currentChallenge">7-Day Calm Mind Challenge (Day 4/7)</span></p>
+  <p><strong>Daily Task Completion Rate:</strong> <span id="taskRate">85%</span></p>
+  <p><strong>Time Spent on Platform:</strong> <span id="platformTime">1 hour daily</span></p>
+</div>
+
+<!-- 5. Behavioral & Lifestyle Improvements -->
+<div class="progress-section">
+  <h3>Holistic Lifestyle Changes</h3>
+  <p><strong>Screen Time Reduction:</strong> <span id="screenTimeReduction">Reduced 2 hrs/day compared to last week</span></p>
+  <p><strong>Sleep Pattern:</strong> <span id="sleepPattern">Average 7 hrs of sleep — up from 5 hrs</span></p>
+  <p><strong>Physical Activity:</strong> <span id="physicalActivity">Logged 3 workouts this week</span></p>
+  <p><strong>Relapse Count / Free Days:</strong> <span id="relapseCount">No relapse for 21 days — great progress!</span></p>
+</div>
+
+<!-- 6. Personalized Feedback & Recommendations -->
+<div class="progress-section">
+  <h3>Feedback & Recommendations</h3>
+  <p>Encouragement: “You’ve shown great discipline this week!”</p>
+  <p>Suggested Next Challenge: “Try the Balance Week Challenge to improve emotional well-being.”</p>
+  <p>Recommended Activities: Meditation, Journaling, Counseling Sessions</p>
+  <p>Upcoming Session Reminder: Next session with counselor — <span id="nextSession">Nov 3, 6 PM</span></p>
+</div>
+
+</main>
+<script>
+// Example data - replace with dynamic data as needed
+  document.getElementById('userName').innerText = 'John Doe / 12345';
+  document.getElementById('addictionType').innerText = 'Social Media';
+  document.getElementById('program').innerText = 'Digital Detox Program';
+  document.getElementById('startDate').innerText = '2024-01-01';
+  document.getElementById('currentDay').innerText = 'Day 15';
+  document.getElementById('recoveryGoal').innerText = 'Reduce screen time';
+
+  document.getElementById('recoveryPercent').innerText = 'You’ve completed 65% of your plan!';
+  document.getElementById('streak').innerText = '12 days without relapse!';
+  document.getElementById('milestone').innerText = 'Level 3: Mind Control Achieved';
+  document.getElementById('nextGoal').innerText = 'Stay consistent for the next 5 days to unlock “Resilience Badge.”';
+
+  document.getElementById('stressLevel').innerText = '3/10';
+  document.getElementById('motivationLevel').innerText = 'High';
+
+  document.getElementById('challengesCompleted').innerText = 'No-Screen Sunday ✅, Mindful Sip Challenge ✅';
+  document.getElementById('currentChallenge').innerText = '7-Day Calm Mind Challenge (Day 4/7)';
+  document.getElementById('taskRate').innerText = '85%';
+  document.getElementById('platformTime').innerText = '1 hour daily';
+
+  document.getElementById('sleepPattern').innerText = 'Average 7 hrs of sleep — up from 5 hrs';
+  document.getElementById('physicalActivity').innerText = 'Logged 3 workouts this week';
+  document.getElementById('relapseCount').innerText = 'No relapse for 21 days — great progress!';
+
+  document.getElementById('nextSession').innerText = 'Nov 3, 6 PM';
+
+  // Generate example charts
+  const ctxProgress = document.getElementById('progressOverviewChart').getContext('2d');
+  new Chart(ctxProgress, {
+    type: 'doughnut',
+    data: {
+      labels: ['Completed', 'Remaining'],
+      datasets: [{
+        data: [65, 35],
+        backgroundColor: ['#66bb6a', '#e0e0e0']
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { position: 'bottom' } }
+    }
+  });
+  const ctxMood = document.getElementById('moodTrendChart').getContext('2d');
+  new Chart(ctxMood, {
+    type: 'line',
+    data: {
+      labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      datasets: [{
+        label: 'Mood',
+        data: [7, 8, 6, 7, 8, 9, 8],
+        fill: false,
+        borderColor: '#42a5f5'
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: { min: 1, max: 10 }
+      }
+    }
+  });
+  window.onload = function() {
+  const dataStr = localStorage.getItem('userProgress');
+  if (dataStr) {
+    const data = JSON.parse(dataStr);
+
+    // Update DOM elements
+    document.getElementById('userName').innerText = data.userName;
+    document.getElementById('addictionType').innerText = data.addictionType;
+    document.getElementById('program').innerText = data.program;
+    document.getElementById('startDate').innerText = data.startDate;
+    document.getElementById('currentDay').innerText = 'Day ' + data.currentDay;
+    document.getElementById('recoveryGoal').innerText = data.recoveryGoal;
+
+    document.getElementById('recoveryPercent').innerText = 'You’ve completed ' + data.recoveryPercent + '% of your plan!';
+    document.getElementById('streak').innerText = data.streak + ' days without relapse!';
+    document.getElementById('milestone').innerText = data.milestone;
+    document.getElementById('nextGoal').innerText = data.nextGoal;
+
+    document.getElementById('stressLevel').innerText = data.stressLevel + '/10';
+    document.getElementById('motivationLevel').innerText = data.motivationLevel;
+
+    document.getElementById('challengesCompleted').innerText = data.challengesCompleted.join(', ');
+    document.getElementById('currentChallenge').innerText = data.currentChallenge;
+    document.getElementById('taskRate').innerText = data.taskRate;
+    document.getElementById('platformTime').innerText = data.platformTime;
+
+    document.getElementById('sleepPattern').innerText = data.sleep;
+    document.getElementById('physicalActivity').innerText = data.physicalActivity;
+    document.getElementById('relapseCount').innerText = data.relapseCount;
+    document.getElementById('nextSession').innerText = data.nextSession;
+
+    // Generate mood trend chart
+    const ctxMood = document.getElementById('moodTrendChart').getContext('2d');
+    new Chart(ctxMood, {
+      type: 'line',
+      data: {
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        datasets: [{
+          label: 'Mood',
+          data: data.moodData,
+          fill: false,
+          borderColor: '#42a5f5'
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: { min: 1, max: 10 }
+        }
+      }
+    });
+
+    // Generate progress doughnut chart
+    const ctxProgress = document.getElementById('progressOverviewChart').getContext('2d');
+    new Chart(ctxProgress, {
+      type: 'doughnut',
+      data: {
+        labels: ['Completed', 'Remaining'],
+        datasets: [{
+          data: [data.recoveryPercent, 100 - data.recoveryPercent],
+          backgroundColor: ['#66bb6a', '#e0e0e0']
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { position: 'bottom' } }
+      }
+    });
+  } else {
+    // No data found, you can set defaults or prompt user to input data
+    alert('No user progress data found. Please enter your info.');
+  }
+};
+</script>
+
+</body>
+</html>

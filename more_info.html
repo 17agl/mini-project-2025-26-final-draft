@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Understanding Addiction & Support</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      margin: 20px;
+      background-color: #d9e0f1;
+      color: #333;
+    }
+
+    /* Top-left back button positioning */
+    .top-left-back {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+    }
+
+    .top-left-back a {
+      display: inline-block;
+      padding: 10px 15px;
+      background-color: #2e7d32;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 1em;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .top-left-back a:hover {
+      background-color: #245f2d;
+      transform: scale(1.05);
+    }
+
+    h1 {
+      color: #115a7a;
+      text-align: center;
+      margin-top: 60px; /* space for fixed back button */
+      font-size: 2.5em;
+    }
+
+    h2 {
+      color: #2b85b9;
+      text-align: center;
+      margin-top: 40px;
+      font-size: 2em;
+    }
+
+    p {
+      max-width: 800px;
+      margin: 15px auto;
+      font-size: 1.1em;
+    }
+
+    /* Styling for sections */
+    .section {
+      padding: 20px;
+      margin: 20px auto;
+      background: #c4d8e8;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      max-width: 900px;
+      position: relative;
+    }
+
+    /* Style for lists */
+    ul {
+      padding-left: 20px;
+    }
+
+    li {
+      margin: 10px 0;
+    }
+
+    /* Image container styles for strategic placement */
+    .image-container {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    /* Make images responsive and styled */
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    /* Diagram styles */
+    .diagram {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .diagram-item {
+      flex: 1 1 45%;
+      background: #e8f5e9;
+      margin: 10px;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    /* Call to action button style */
+    .btn {
+      display: inline-block;
+      padding: 15px 30px;
+      margin: 30px auto;
+      background-color: #2e7d32;
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.2em;
+      border-radius: 8px;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .btn:hover {
+      background-color: #245f2d;
+      transform: scale(1.05);
+    }
+
+    /* Back link style (top left fixed button) */
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 30px;
+      font-size: 1em;
+      color: #2e7d32;
+      text-decoration: none;
+    }
+
+    /* Responsive adjustments */
+    @media(max-width: 1024px) {
+      .diagram-item {
+        flex: 1 1 45%;
+      }
+      .program-box {
+        width: calc(45% - 20px);
+      }
+    }
+
+    @media(max-width: 768px) {
+      body {
+        margin-top: 80px; /* space for fixed back button */
+      }
+      .program-box {
+        width: 100%;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Fixed Back to Home Button at Top-Left Corner -->
+  <div class="top-left-back">
+    <a href="index.html">Back to Home</a>
+  </div>
+
+  <h1><br>Understanding Addiction and the Need for Psychological Support</h1>
+
+  <!-- Section 1 -->
+  <div class="section">
+    <h2>What Is Addiction?</h2>
+    <!-- Place image at the top of this section for immediate visual context -->
+    <div class="image-container">
+      <img src="https://newvistahealth.com/wp-content/uploads/2022/05/addictionphases.png" alt="Phase of Addiction" />
+    </div>
+    <p>
+      Addiction is a chronic condition that affects how a person thinks, feels, and behaves. It occurs when an individual becomes physically or psychologically dependent on a substance or activity despite knowing its harmful consequences.
+    </p>
+    <p>
+      It’s not a sign of weakness or lack of willpower — it’s a complex interplay of biological, emotional, and social factors that alters the brain’s reward and motivation systems.
+    </p>
+    <p>
+      Addiction can impact every aspect of life — health, relationships, work, and overall emotional well-being. Recovery, therefore, isn’t just about quitting — it’s about healing the mind, rebuilding habits, and rediscovering balance.
+    </p>
+  </div>
+
+<!-- Section 2 -->
+<div class="section">
+  <h2>Types of Addiction</h2>
+  <p>Addictions can be broadly classified into two categories: substance addictions and behavioral (or process) addictions. Both types require understanding, compassion, and professional care.</p>
+
+  <h3>1. Substance Addictions</h3>
+  <ul>
+    <li><strong>Alcohol Addiction:</strong> Dependence on alcohol for stress relief or emotional escape.</li>
+    <li><strong>Drug Addiction:</strong> Use of prescription or illicit drugs like opioids, stimulants, or cannabis.</li>
+    <li><strong>Nicotine Addiction:</strong> Habitual dependence on tobacco or vaping products.</li>
+    <li><strong>Medication Misuse:</strong> Overuse or misuse of painkillers, sleeping pills, or anti-anxiety medications.</li>
+  </ul>
+
+  <h3>2. Behavioral (Non-Substance) Addictions</h3>
+  <ul>
+    <li><strong>Internet or Social Media Addiction:</strong> Excessive online use affecting focus and relationships.</li>
+    <li><strong>Gaming Addiction:</strong> Uncontrolled gaming that interferes with daily responsibilities.</li>
+    <li><strong>Gambling Addiction:</strong> Persistent betting despite financial or emotional losses.</li>
+    <li><strong>Shopping Addiction:</strong> Impulsive spending for emotional satisfaction.</li>
+    <li><strong>Food or Eating Addictions:</strong> Uncontrolled eating patterns linked to emotions or stress.</li>
+    <li><strong>Work or Study Addiction:</strong> Overworking that leads to burnout and emotional strain.</li>
+  </ul>
+  <!-- Image placed after list to support content -->
+  <div class="image-container">
+    <img src="https://www.shutterstock.com/image-vector/types-addiction-infographic-icons-depressed-600nw-2445269301.jpg" alt="Types of Addiction" />
+  </div>
+</div>
+
+<!-- Section 3 -->
+<div class="section">
+  <h2>Why Psychological Support Is Essential in Overcoming Addiction</h2>
+  <!-- Place image near the start to enhance engagement -->
+  <div class="image-container">
+    <img src="https://www.verywellmind.com/thmb/A8tGx8NlNh_T3_lQGR04NJyGnGc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/overcoming-addiction-4157285.FINAL-f0a8efaed7a24b2a9a1a26dbbbf60435.png" alt="Support and Healing Illustration" />
+  </div>
+  <p>Addiction is not only a physical dependence — it deeply affects a person’s thoughts, emotions, and coping mechanisms. That’s why psychological support plays a vital role in recovery.</p>
+  <div class="diagram">
+    <div class="diagram-item">
+      <h3>1. Understanding Root Causes</h3>
+      <p>Therapists help individuals explore underlying emotional pain, trauma, or stress that may have led to addiction. Understanding the “why” behind addictive behavior is the first step toward change.</p>
+    </div>
+    <div class="diagram-item">
+      <h3>2. Building Emotional Strength</h3>
+      <p>Through counseling, individuals learn to manage emotions such as anxiety, guilt, or loneliness without relying on addictive behaviors.</p>
+    </div>
+    <div class="diagram-item">
+      <h3>3. Breaking Behavioral Patterns</h3>
+      <p>Psychological support helps recognize triggers, manage cravings, and replace harmful habits with healthy coping mechanisms.</p>
+    </div>
+    <div class="diagram-item">
+      <h3>4. Restoring Self-Esteem and Motivation</h3>
+      <p>Addiction often damages confidence and hope. Therapy helps individuals rebuild self-worth and find motivation for personal growth.</p>
+    </div>
+    <div class="diagram-item">
+      <h3>5. Creating Lasting Recovery</h3>
+      <p>Psychological guidance ensures long-term success by promoting mindfulness, stress management, and relapse-prevention strategies.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Section 4 -->
+<div class="section">
+  <h2>The Guiding Vision Recovery Approach</h2>
+  <p>
+    At Guiding Vision Recovery, we combine scientific addiction management techniques with compassionate psychological support to address both the physical and emotional aspects of recovery.
+  </p>
+  <p>
+    Our goal is not just to help people quit an addiction, but to help them heal, rebuild, and live freely — with clarity, confidence, and inner peace.
+  </p>
+  <!-- Place image at the top of this section for immediate visual impact -->
+  <!-- <div class="image-container">
+    <img src="https://www.verywellmind.com/thmb/A8tGx8NlNh_T3_lQGR04NJyGnGc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/overcoming-addiction-4157285.FINAL-f0a8efaed7a24b2a9a1a26dbbbf60435.png" alt="Support and Healing Illustration" />
+  </div> -->
+</div>
+
+</body>
+</html>

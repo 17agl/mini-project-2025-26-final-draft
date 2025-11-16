@@ -1,0 +1,597 @@
+<!-- dashboard_tasks.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Set Goals and Targets</title>
+<link rel="stylesheet" href="styles.css" />
+<script src="script.js"></script>
+<style>
+  /* Reset & Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: 'Roboto', sans-serif;
+  background: #f0f4f8;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Header & Navigation */
+.dashboard-header {
+  background-color: #388E3C; /* matching the green theme */
+  padding: 20px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  margin-bottom: 20px;
+}
+
+.dashboard-header h1 {
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+  font-size: 2em;
+  margin: 0;
+}
+
+.dashboard-nav {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.dashboard-nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1em;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.dashboard-nav a:hover {
+  background-color: rgba(255,255,255,0.2);
+  transform: translateY(-2px);
+}
+
+.logout-btn {
+  background-color: #e53935; /* same as your logout button */
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.logout-btn:hover {
+  background-color: #c62828;
+}
+
+/* Main Content */
+main {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+/* Container for Goals & Tasks */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+
+/* Goals Card */
+.goals-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 30px;
+  flex: 1 1 500px;
+  max-width: 600px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Goals Card Header */
+.goals-card h2 {
+  font-size: 1.8em;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #388E3C;
+  border-bottom: 2px solid #66bb6a;
+  padding-bottom: 10px;
+}
+
+/* Form Styling */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group {
+  background: rgba(255,255,255,0.7);
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: inset 4px 4px 8px rgba(0,0,0,0.05),
+              inset -4px -4px 8px rgba(255,255,255,0.7);
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 1.1em;
+}
+
+input[type=text], input[type=number], input[type=date], textarea, select {
+  padding: 12px;
+  border-radius: 12px;
+  border: 2px solid #66bb6a;
+  font-size: 1em;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input[type=text]:focus, input[type=number]:focus, input[type=date]:focus, textarea:focus, select:focus {
+  border-color: #388E3C;
+  outline: none;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Buttons */
+.btn {
+  padding: 15px 30px;
+  border: none;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: all 0.3s;
+  align-self: center;
+  margin-top: 20px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #66bb6a, #388e3c);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #81c784, #4caf50);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transform: translateY(-2px);
+}
+
+/* Goals List */
+.goals-list {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Individual Goal Item */
+.goal-item {
+  background: #e0f2f1;
+  padding: 15px 20px;
+  border-radius: 15px;
+  box-shadow: 4px 4px 8px rgba(0,0,0,0.05),
+              -4px -4px 8px rgba(255,255,255,0.7);
+  position: relative;
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.goal-item:hover {
+  box-shadow: 8px 8px 16px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+}
+
+.goal-title {
+  font-weight: 600;
+  font-size: 1.2em;
+  margin-bottom: 8px;
+}
+
+/* Goal Actions (Edit/Delete/Save) */
+.goal-actions {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 8px;
+}
+
+.goal-actions button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 1em;
+  transition: background 0.3s;
+}
+
+.goal-actions button:hover {
+  background: rgba(0,0,0,0.1);
+}
+
+/* Checklist section for Today's Tasks */
+#todayGoals {
+  margin-top: 40px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  flex: 1 1 300px;
+  max-width: 400px;
+}
+
+#todayGoals h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #2e7d32;
+  border-bottom: 2px solid #66bb6a;
+  padding-bottom: 10px;
+}
+
+#tasksChecklist {
+  list-style: none;
+  padding: 0;
+}
+
+#tasksChecklist li {
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  background: #f0f4f8;
+  box-shadow: inset 2px 2px 4px rgba(0,0,0,0.05),
+              inset -2px -2px 4px rgba(255,255,255,0.7);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Responsive adjustments */
+@media(max-width: 768px) {
+  main {
+    padding: 10px;
+  }
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .goals-card, #todayGoals {
+    max-width: 100%;
+  }
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .dashboard-nav {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
+</style>
+</head>
+<body>
+<header class="dashboard-header">
+  <h1>My Plan</h1>
+  <nav class="dashboard-nav" id="navbar">
+    <a href="dashboard_home.html">Home</a>
+    <a href="dashboard_tasks.html">My Plans</a>
+    <a href="dashboard_challenges.html">Challenges</a>
+    <a href="dashboard_progress.html">Progress</a>
+    <a href="dashboard_rewards.html">Rewards</a>
+    <a href="dashboard_savings.html">Savings</a>
+    <a href="dashboard_motivation.html">Motivation</a>
+    <a href="dashboard_profile.html">Profile</a>
+    <a href="index.html" class="logout-btn" onclick="logout()">Logout</a>
+  </nav>
+</header>
+
+<main>
+<div class="container">
+  <div class="goals-card">
+    <h2>Plan Your Goals</h2>
+    <form id="goalsForm">
+      <!-- Goal Title -->
+      <div class="form-group">
+        <label for="goalTitle">Goal Title</label>
+        <input type="text" id="goalTitle" placeholder="e.g., Abstain from alcohol" required />
+      </div>
+
+      <!-- Focus Area -->
+      <div class="form-group">
+        <label for="goalType">Focus Area</label>
+        <select id="goalType" required>
+          <option value="">Select focus area</option>
+          <option value="abstinence">Abstinence from Substance</option>
+          <option value="reduce_use">Reduce Substance Use</option>
+          <option value="triggers_coping">Identify Triggers & Coping</option>
+          <option value="health_improvement">Physical & Mental Health</option>
+          <option value="social_connections">Social Connections</option>
+          <option value="vocational_education">Vocational/Education</option>
+          <option value="self_care">Self-care & Reflection</option>
+        </select>
+      </div>
+
+      <!-- Specific Goal -->
+      <div class="form-group">
+        <label for="specificGoal">Specific Goal</label>
+        <textarea id="specificGoal" rows="3" placeholder="Describe your specific goal..." required></textarea>
+      </div>
+
+      <!-- Measurable Metric -->
+      <!-- <div class="form-group">
+        <label for="measure">Measurable</label>
+        <input type="text" id="measure" placeholder="e.g., Number of sober days, reduced cravings" required />
+      </div> -->
+
+      <!-- Achievable & Relevant -->
+      <div class="form-group">
+        <label for="achievable">Achievable & Relevant</label>
+        <textarea id="achievable" rows="2" placeholder="Why is this goal achievable and relevant?" required></textarea>
+      </div>
+
+      <!-- Time-bound -->
+      <div class="form-group">
+        <label for="deadline">Time-bound</label>
+        <input type="date" id="deadline" required />
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="btn btn-primary">Add Goal</button>
+    </form>
+
+    <!-- Goals List -->
+    <div class="goals-list" id="goalsList"></div>
+  </div>
+
+  <!-- Today's Tasks Checklist -->
+  <div id="todayGoals">
+    <h2>Today's Tasks</h2>
+    <ul id="tasksChecklist">
+      <!-- Goals will be added here dynamically -->
+    </ul>
+  </div>
+</div>
+
+</main>
+<script>
+  const goals = [];
+
+  // Existing goal form handling
+  const form = document.getElementById('goalsForm');
+  const goalsList = document.getElementById('goalsList');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const goalTitle = document.getElementById('goalTitle').value.trim();
+    const goalType = document.getElementById('goalType').value;
+    const specificGoal = document.getElementById('specificGoal').value.trim();
+    const measure = document.getElementById('measure').value.trim();
+    const achievable = document.getElementById('achievable').value.trim();
+    const deadline = document.getElementById('deadline').value;
+
+    const goal = {
+      id: Date.now(),
+      title: goalTitle,
+      type: goalType,
+      specific: specificGoal,
+      measure: measure,
+      achievable: achievable,
+      deadline: deadline,
+    };
+
+    goals.push(goal);
+    addGoalToDOM(goal);
+    addGoalToChecklist(goal);
+    form.reset();
+  });
+
+  function addGoalToDOM(goal) {
+    const div = document.createElement('div');
+    div.className = 'goal-item';
+    div.dataset.id = goal.id;
+
+    div.innerHTML = `
+      <div class="goal-title">${goal.title}</div>
+      <div><strong>Focus Area:</strong> ${goal.type}</div>
+      <div><strong>Specific Goal:</strong> ${goal.specific}</div>
+      <div><strong>Progress Metric:</strong> ${goal.measure}</div>
+      <div><strong>Achievable & Relevant:</strong> ${goal.achievable}</div>
+      <div><strong>Deadline:</strong> ${goal.deadline}</div>
+      <div class="goal-actions">
+        <button title="Edit" onclick="editGoal(${goal.id})">Edit</button>
+        <button title="Delete" onclick="deleteGoal(${goal.id})">Delete</button>
+        <button title="Save" style="display:none;" onclick="saveGoal(${goal.id})">Save</button>
+      </div>
+    `;
+    goalsList.appendChild(div);
+  }
+
+  function addGoalToChecklist(goal) {
+    const checklist = document.getElementById('tasksChecklist');
+    const li = document.createElement('li');
+    li.id = `checklist-${goal.id}`;
+    li.innerHTML = `<input type="checkbox" /> ${goal.title}`;
+    checklist.appendChild(li);
+  }
+
+  function deleteGoal(id) {
+    // Remove from goals array
+    const index = goals.findIndex(g => g.id === id);
+    if (index !== -1) {
+      goals.splice(index, 1);
+    }
+    // Remove from DOM
+    const goalDiv = document.querySelector(`.goal-item[data-id="${id}"]`);
+    if (goalDiv) goalDiv.remove();
+    // Remove from checklist
+    const li = document.getElementById(`checklist-${id}`);
+    if (li) li.remove();
+  }
+
+  function editGoal(id) {
+    const goalDiv = document.querySelector(`.goal-item[data-id="${id}"]`);
+    if (!goalDiv) return;
+
+    const buttons = goalDiv.querySelectorAll('.goal-actions button');
+    buttons.forEach(btn => {
+      if (btn.innerText === 'Edit') btn.style.display = 'none';
+      else if (btn.innerText === 'Save') btn.style.display = 'inline-block';
+    });
+
+    const children = goalDiv.children;
+    for (let i = 0; i < children.length; i++) {
+      const child = children[i];
+      if (child.tagName === 'DIV') {
+        const strong = child.querySelector('strong');
+        if (strong) {
+          const labelText = strong.innerText;
+          if (labelText === 'Focus Area:') {
+            // Convert to select
+            const currentType = goals.find(g => g.id === id).type;
+            const select = document.createElement('select');
+            select.innerHTML = `
+              <option value="abstinence" ${currentType==='abstinence'?'selected':''}>Abstinence from Substance</option>
+              <option value="reduce_use" ${currentType==='reduce_use'?'selected':''}>Reduce Substance Use</option>
+              <option value="triggers_coping" ${currentType==='triggers_coping'?'selected':''}>Identify Triggers & Coping</option>
+              <option value="health_improvement" ${currentType==='health_improvement'?'selected':''}>Physical & Mental Health</option>
+              <option value="social_connections" ${currentType==='social_connections'?'selected':''}>Social Connections</option>
+              <option value="vocational_education" ${currentType==='vocational_education'?'selected':''}>Vocational/Education</option>
+              <option value="self_care" ${currentType==='self_care'?'selected':''}>Self-care & Reflection</option>
+            `;
+            child.innerHTML = '';
+            child.appendChild(select);
+          } else if (labelText === 'Goal Title:') {
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.value = goals.find(g => g.id===id).title;
+            child.innerHTML = '';
+            child.appendChild(input);
+          } else if (labelText === 'Specific Goal:') {
+            const textarea = document.createElement('textarea');
+            textarea.rows = 3;
+            textarea.value = goals.find(g => g.id===id).specific;
+            child.innerHTML = '';
+            child.appendChild(textarea);
+          } else if (labelText === 'Progress Metric:') {
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.value = goals.find(g => g.id===id).measure;
+            child.innerHTML = '';
+            child.appendChild(input);
+          } else if (labelText === 'Achievable & Relevant:') {
+            const textarea = document.createElement('textarea');
+            textarea.rows = 2;
+            textarea.value = goals.find(g => g.id===id).achievable;
+            child.innerHTML = '';
+            child.appendChild(textarea);
+          } else if (labelText === 'Deadline:') {
+            const input = document.createElement('input');
+            input.type = 'date';
+            input.value = goals.find(g => g.id===id).deadline;
+            child.innerHTML = '';
+            child.appendChild(input);
+          }
+        }
+      }
+    }
+  }
+
+  function saveGoal(id) {
+    const goalDiv = document.querySelector(`.goal-item[data-id="${id}"]`);
+    if (!goalDiv) return;
+
+    const inputs = goalDiv.querySelectorAll('input, select, textarea');
+    const updatedGoal = { id: id };
+    inputs.forEach(input => {
+      const label = input.previousElementSibling ? input.previousElementSibling.querySelector('strong') : null;
+      if (label) {
+        const labelText = label.innerText;
+        if (labelText === 'Goal Title:') updatedGoal.title = input.value;
+        if (labelText === 'Focus Area:') updatedGoal.type = input.value;
+        if (labelText === 'Specific Goal') updatedGoal.specific = input.value;
+        if (labelText === 'Progress Metric') updatedGoal.measure = input.value;
+        if (labelText === 'Achievable & Relevant') updatedGoal.achievable = input.value;
+        if (labelText === 'Deadline:') updatedGoal.deadline = input.value;
+      }
+    });
+
+    // Update goals array
+    const index = goals.findIndex(g => g.id === id);
+    if (index !== -1) {
+      goals[index] = updatedGoal;
+    }
+
+    // Re-render static view
+    const newDiv = document.createElement('div');
+    newDiv.className = 'goal-item';
+    newDiv.dataset.id = id;
+    newDiv.innerHTML = `
+      <div class="goal-title">${updatedGoal.title}</div>
+      <div><strong>Focus Area:</strong> ${updatedGoal.type}</div>
+      <div><strong>Specific Goal:</strong> ${updatedGoal.specific}</div>
+      <div><strong>Progress Metric:</strong> ${updatedGoal.measure}</div>
+      <div><strong>Achievable & Relevant:</strong> ${updatedGoal.achievable}</div>
+      <div><strong>Deadline:</strong> ${updatedGoal.deadline}</div>
+      <div class="goal-actions">
+        <button title="Edit" onclick="editGoal(${id})">Edit</button>
+        <button title="Delete" onclick="deleteGoal(${id})">Delete</button>
+        <button title="Save" style="display:none;" onclick="saveGoal(${id})">Save</button>
+      </div>
+    `;
+    goalDiv.replaceWith(newDiv);
+    // Update checklist item
+    const li = document.getElementById(`checklist-${id}`);
+    if (li) li.innerHTML = `<input type="checkbox" /> ${updatedGoal.title}`;
+  }
+
+  // --- New: Functions to add goals as tasks in dashboard ---
+
+  // Call this function when user accepts a challenge
+  function addGoalAndTask(title, category) {
+    const id = Date.now();
+
+    // Add to goals array
+    const newGoal = {
+      id: id,
+      title: title,
+      type: category,
+    };
+    goals.push(newGoal);
+    addGoalToDOM(newGoal);
+    addGoalToChecklist(newGoal);
+    // Also add as a task in dashboard
+    addTaskToToday(newGoal);
+  }
+
+  // Function to create task card
+  function addTaskToToday(goal) {
+    const container = document.getElementById('todayTasks');
+    const taskCard = document.createElement('div');
+    taskCard.className = 'task-card';
+    taskCard.id = `task-${goal.id}`;
+    taskCard.innerHTML = `
+      <div class="task-title"><input type="checkbox" class="task-checkbox" /> ${goal.title}</div>
+    `;
+    container.appendChild(taskCard);
+  }
+</script>
+</body>
+</html>

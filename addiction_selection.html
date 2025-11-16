@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Addiction Types Selection</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #e0eaf4;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  /* Styled heading for better design */
+  h1 {
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 2.5em;
+    color: #08633f;
+    text-shadow: 1px 1px 2px rgba(1, 21, 58, 0.2);
+  }
+  /* Styled paragraph for emphasis */
+  p {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+    color: #0c6bab;
+  }
+  /* Main content area */
+  .content {
+    flex: 1;
+  }
+  /* Buttons container at bottom with increased gap */
+  .bottom-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 30px; /* increased gap */
+    margin-top: 40px; /* added more space above buttons */
+    margin-bottom: 30px; /* increased bottom margin */
+    flex-wrap: wrap;
+  }
+  .bottom-buttons button {
+    flex: 1;
+    min-width: 150px;
+    max-width: 200px;
+    padding: 15px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  /* Specific button colors */
+  .next-btn {
+    background-color: #0b9a4b;
+    color: white;
+  }
+  .next-btn:hover {
+    background-color: #07561d;
+  }
+  .show-all-btn {
+    background-color: #3995e0;
+    color: white;
+  }
+  .show-all-btn:hover {
+    background-color: #0e467e;
+  }
+  .back-home-btn {
+    background-color: #93b032;
+    color: white;
+  }
+  .back-home-btn:hover {
+    background-color: #4e5905;
+  }
+  /* Card styles */
+  .cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+  .category, .sub-category {
+    background-color: #fff;
+    border: 3px solid #81b3d5;
+    border-radius: 12px;
+    width: 180px;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    padding: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(1, 58, 37, 0.1);
+    transition: all 0.3s;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.2em;
+  }
+  .category:hover, .sub-category:hover {
+    border-color: #fbdc2d;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  }
+  .category .icon, .sub-category .icon {
+    font-size: 50px;
+    margin-bottom: 10px;
+  }
+  /* Selected state for subcategories */
+  .sub-category.selected {
+    border-color: #fbc02d;
+    background-color: #fff9c4;
+  }
+  /* Hidden class for toggling */
+  .hidden {
+    display: none;
+  }
+  /* Margin between subcategories and bottom buttons */
+  #subcategories-container {
+    margin-top: 50px; /* increased gap for clarity */
+  }
+  /* Additional styling for heading to make it stand out */
+  /* Already applied above, but can add more if needed */
+  /* Media query for small screens */
+  @media(max-width: 600px){
+    .cards-container {
+      flex-direction: column;
+      align-items: center;
+    }
+    .bottom-buttons {
+      flex-direction: column;
+    }
+  }
+</style>
+</head>
+<body>
+
+<h1 style="text-align:center;">Select Addictions</h1>
+<!-- Main categories -->
+<div class="cards-container" id="main-categories">
+  <div class="category" onclick="toggleSubCategories('Social Media')">
+    <div class="icon">🌐</div>
+    Social Media
+  </div>
+  <div class="category" onclick="toggleSubCategories('Gaming')">
+    <div class="icon">🎮</div>
+    Gaming
+  </div>
+  <div class="category" onclick="toggleSubCategories('Alcohol')">
+    <div class="icon">🍷</div>
+    Alcohol
+  </div>
+  <div class="category" onclick="toggleSubCategories('Smoking')">
+    <div class="icon">🚬</div>
+    Smoking
+  </div>
+  <div class="category" onclick="toggleSubCategories('Gambling')">
+    <div class="icon">🎲</div>
+    Gambling
+  </div>
+</div>
+
+<!-- Subcategories for each main category, initially hidden -->
+<div id="subcategories-container" class="cards-container hidden">
+  <!-- Social Media Subcategories -->
+  <div class="sub-category hidden" data-parent="Social Media" onclick="toggleType(this)">
+    <div class="icon">📘</div>
+    Facebook
+  </div>
+  <div class="sub-category hidden" data-parent="Social Media" onclick="toggleType(this)">
+    <div class="icon">📸</div>
+    Instagram
+  </div>
+  <div class="sub-category hidden" data-parent="Social Media" onclick="toggleType(this)">
+    <div class="icon">🐦</div>
+    Twitter
+  </div>
+  <!-- Gaming Subcategories -->
+  <div class="sub-category hidden" data-parent="Gaming" onclick="toggleType(this)">
+    <div class="icon">🕹️</div>
+    Video Games
+  </div>
+  <div class="sub-category hidden" data-parent="Gaming" onclick="toggleType(this)">
+    <div class="icon">📱</div>
+    Mobile Games
+  </div>
+  <!-- Alcohol Subcategories -->
+  <div class="sub-category hidden" data-parent="Alcohol" onclick="toggleType(this)">
+    <div class="icon">🍺</div>
+    Beer
+  </div>
+  <div class="sub-category hidden" data-parent="Alcohol" onclick="toggleType(this)">
+    <div class="icon">🍷</div>
+    Wine
+  </div>
+  <div class="sub-category hidden" data-parent="Alcohol" onclick="toggleType(this)">
+    <div class="icon">🥃</div>
+    Spirits
+  </div>
+  <!-- Smoking Subcategories -->
+  <div class="sub-category hidden" data-parent="Smoking" onclick="toggleType(this)">
+    <div class="icon">🚬</div>
+    Cigarettes
+  </div>
+  <div class="sub-category hidden" data-parent="Smoking" onclick="toggleType(this)">
+    <div class="icon">💨</div>
+    Vaping
+  </div>
+  <!-- Gambling Subcategories -->
+  <div class="sub-category hidden" data-parent="Gambling" onclick="toggleType(this)">
+    <div class="icon">🎰</div>
+    Casino
+  </div>
+  <div class="sub-category hidden" data-parent="Gambling" onclick="toggleType(this)">
+    <div class="icon">🏇</div>
+    Sports Betting
+  </div>
+</div>
+
+<!-- Buttons at bottom, side by side and same size -->
+<div class="bottom-buttons" id="bottom-buttons">
+  <button class="back-home-btn" onclick="goHome()">Back to Home</button>
+  <button class="show-all-btn" onclick="toggleShowAll()">Show All</button>
+  <!-- Removed "Need help now?" button -->
+  <button class="next-btn" onclick="proceed()">Next</button>
+</div>
+
+<!-- Support modal (not used now) -->
+<!-- <div id="supportModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeSupport()">&times;</span>
+    <h2>Support Options</h2>
+    <p>Call our hotline: <strong>1-800-HELP-NOW</strong></p>
+    <p>Chat with a counselor: <a href="#" target="_blank">Start Chat</a></p>
+  </div>
+</div> -->
+
+<script>
+  const subcategoriesContainer = document.getElementById('subcategories-container');
+  const bottomButtons = document.getElementById('bottom-buttons');
+  let selectedTypes = [];
+  let selectedSubCategories = [];
+  let showAllToggled = false;
+
+  function toggleSubCategories(category) {
+    if (subcategoriesContainer.classList.contains('hidden')) {
+      subcategoriesContainer.classList.remove('hidden');
+    }
+    Array.from(subcategoriesContainer.children).forEach(card => {
+      if (card.getAttribute('data-parent') === category) {
+        card.classList.toggle('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+  }
+
+  function toggleType(card) {
+    const type = card.innerText.trim();
+    if (card.classList.contains('selected')) {
+      card.classList.remove('selected');
+      selectedSubCategories = selectedSubCategories.filter(t => t !== type);
+    } else {
+      card.classList.add('selected');
+      selectedSubCategories.push(type);
+    }
+  }
+
+  function toggleShowAll() {
+    showAllToggled = !showAllToggled;
+    if (showAllToggled) {
+      Array.from(subcategoriesContainer.children).forEach(card => {
+        card.classList.remove('hidden');
+      });
+      document.querySelector('.show-all-btn').innerText = "Hide All";
+    } else {
+      Array.from(subcategoriesContainer.children).forEach(card => {
+        card.classList.add('hidden');
+      });
+      document.querySelector('.show-all-btn').innerText = "Show All";
+    }
+  }
+
+  function proceed() {
+    if (selectedSubCategories.length === 0 && selectedTypes.length === 0) {
+      alert('Please select at least one addiction type or subcategory.');
+      return;
+    }
+    // Store selected addictions for next page
+    localStorage.setItem('addictions', JSON.stringify({ types: selectedTypes, subcategories: selectedSubCategories }));
+    window.location.href='addiction.html'; // your next page
+  }
+
+  function goHome() {
+    window.location.href = 'index.html'; // main page URL
+  }
+</script>
+
+</body>
+</html>

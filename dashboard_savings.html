@@ -1,0 +1,75 @@
+<!-- dashboard_savings.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Savings & Progress</title>
+<link rel="stylesheet" href="styles.css" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="script.js"></script>
+</head>
+<body>
+<header class="dashboard-header">
+  <h1>Savings</h1>
+  <nav class="dashboard-nav" id="navbar">
+    <a href="dashboard_home.html">Home</a>
+    <a href="dashboard_tasks.html">My Plans</a>
+    <a href="dashboard_challenges.html">Challenges</a>
+    <a href="dashboard_progress.html">Progress</a>
+    <a href="dashboard_rewards.html">Rewards</a>
+    <a href="dashboard_savings.html">Savings</a>
+    <a href="dashboard_motivation.html">Motivation</a>
+    <a href="dashboard_profile.html">Profile</a>
+    <a href="index.html" class="logout-btn" onclick="logout()">Logout</a>
+  </nav>
+</header>
+
+<main>
+<h2>Total Savings</h2>
+<div id="savingsDisplay"></div>
+<canvas id="savingsChart" width="400" height="200"></canvas>
+<button class="btn-primary" onclick="addSavings()">Add Savings</button>
+</main>
+
+<script>
+  // Load savings
+  function loadSavings() {
+    const savings = parseFloat(localStorage.getItem('savings')) || 0;
+    document.getElementById('savingsDisplay').innerText = `Total Savings: ₹${savings.toFixed(2)}`;
+
+    // Generate chart
+    const ctx = document.getElementById('savingsChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: ['Cigarettes', 'Alcohol', 'Gambling', 'Food', 'Internet'],
+        datasets: [{
+          data: [3500, 2000, 1500, 1000, 500],
+          backgroundColor: ['#81c784', '#ffb74d', '#9575cd', '#ff8a65', '#4fc3f7']
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { position: 'bottom' } }
+      }
+    });
+  }
+
+  function addSavings() {
+    const amountStr = prompt('Enter amount to add to savings:', '0');
+    const amount = parseFloat(amountStr);
+    if (!isNaN(amount) && amount > 0) {
+      let total = parseFloat(localStorage.getItem('savings')) || 0;
+      total += amount;
+      localStorage.setItem('savings', total);
+      loadSavings();
+    } else {
+      alert('Invalid amount.');
+    }
+  }
+
+  window.onload = loadSavings;
+</script>
+</body>
+</html>

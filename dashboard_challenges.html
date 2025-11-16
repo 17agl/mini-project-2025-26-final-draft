@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Support & Resources</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+
+<style>
+  /* Basic Styles */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: 'Roboto', sans-serif;
+    background: #f0f4f8;
+    color: #333;
+    line-height: 1.6;
+  }
+  .container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+  }
+  h1 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #fdfdfd;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.1);
+  }
+
+  /* Challenges Section */
+ .challenges-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+ /* Challenge Card Style */
+ .challenge-card {
+    background: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+  }
+ .challenge-card:hover {
+    box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+    transform: translateY(-4px);
+  }
+ .challenge-title {
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+ .challenge-icon {
+    font-size: 1.4em;
+  }
+ .challenge-desc {
+    font-size: 0.95em;
+    margin-bottom: 15px;
+  }
+ .start-btn {
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #66bb6a, #388e3c);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+ .start-btn:hover {
+    background: linear-gradient(135deg, #81c784, #4caf50);
+  }
+
+  /* Goals & Tasks Styles (reusing from previous goals page) */
+ .goals-list {
+    margin-top: 30px;
+  }
+ .goal-item {
+    background: #e0f2f1;
+    padding: 15px 20px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    box-shadow: 4px 4px 8px rgba(0,0,0,0.05),
+                -4px -4px 8px rgba(255,255,255,0.7);
+    transition: box-shadow 0.3s, transform 0.3s;
+    position: relative;
+  }
+ .goal-item:hover {
+    box-shadow: 8px 8px 16px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+  }
+ .goal-title {
+    font-weight: 600;
+    font-size: 1.2em;
+    margin-bottom: 8px;
+  }
+ .goal-actions {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 8px;
+  }
+ .goal-actions button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-size: 1em;
+    transition: background 0.3s;
+  }
+ .goal-actions button:hover {
+    background: rgba(0,0,0,0.1);
+  }
+
+ /* Today's Tasks Cards */
+ #todayTasks {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+ .task-card {
+    background: #fff;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    transition: box-shadow 0.3s, transform 0.3s;
+  }
+ .task-card:hover {
+    box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+    transform: translateY(-4px);
+  }
+ .task-title {
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+ .task-checkbox {
+    margin-right: 8px;
+  }
+</style>
+
+<body>
+<header class="dashboard-header">
+  <h1>My Dashboard</h1>
+  <nav class="dashboard-nav" id="navbar">
+    <a href="dashboard_home.html">Home</a>
+    <a href="dashboard_tasks.html">My Plans</a>
+    <a href="dashboard_challenges.html">Challenges</a>
+    <a href="dashboard_rewards.html">Rewards</a>
+    <a href="dashboard_savings.html">Savings</a>
+    <a href="dashboard_motivation.html">Motivation</a>
+    <a href="dashboard_progress.html">Progress</a>
+    <a href="dashboard_profile.html">Profile</a>
+    <a href="index.html" class="logout-btn" onclick="logout()">Logout</a>
+  </nav>
+</header>
+<main>
+
+<h2>Digital Addiction Challenges</h2>
+  <div class="challenges-section">
+    <!-- Challenge Card -->
+    <div class="challenge-card">
+      <div class="challenge-title"><span class="challenge-icon">🎮</span> No-Screen Sunday</div>
+      <div class="challenge-desc">Take one day off from screens to reconnect with yourself and the world around you. Use this time for rest, reflection, or offline activities that bring peace and joy.</div>
+      <button class="start-btn" onclick="acceptChallenge('No-Screen Sunday', 'Digital Addiction')">Start</button>
+    </div>
+    <div class="challenge-card">
+      <div class="challenge-title"><span class="challenge-icon">🕒</span> 30-Minute Scroll Limit</div>
+      <div class="challenge-desc">Limit your social media time to just 30 minutes a day. Focus on meaningful connections instead of endless scrolling — quality over quantity.</div>
+      <button class="start-btn" onclick="acceptChallenge('30-Minute Scroll Limit', 'Digital Addiction')">Start</button>
+    </div>
+    <div class="challenge-card">
+      <div class="challenge-title"><span class="challenge-icon">🌅</span> Morning Without Devices</div>
+      <div class="challenge-desc">Begin your day tech-free for the first hour. Replace notifications with mindfulness, journaling, or a simple morning walk to start the day calmly.</div>
+      <button class="start-btn" onclick="acceptChallenge('Morning Without Devices', 'Digital Addiction')">Start</button>
+    </div>
+  </div>
+
+  <h2>Gambling Addiction Challenges</h2>
+  <div class="challenges-section">
+    <div class="challenge-card">
+      <div class="challenge-title"><span class="challenge-icon">🧾</span> Track Every Expense</div>
+      <div class="challenge-desc">Keep a daily record of your spending. Awareness is the first step to control — seeing your finances clearly helps you make better, confident choices.</div>
+      <button class="start-btn" onclick="acceptChallenge('Track Every Expense', 'Gambling')">Start</button>
+    </div>
+    <div class="challenge-card">
+      <div class="challenge-title"><span class="challenge-icon">💡</span> Alternative Reward Challenge</div>
+      <div class="challenge-desc">Replace gambling with a positive activity that excites you — like exercise, music, or a new hobby. Discover healthier ways to feel joy and satisfaction.</div>
+      <button class="start-btn" onclick="acceptChallenge('Alternative Reward Challenge', 'Gambling')">Start</button>
+    </div>
+  </div>
+
+  <h2>Substance Addiction Challenges</h2>
+  <div class="challenges-section">
+    <div class="challenge-card">
+      <div class="challenge-title"><span class="challenge-icon">🚬🍷</span> 7-Day Nicotine Break</div>
+      <div class="challenge-desc">Follow a structured, step-by-step plan to reduce cravings and break dependence. Each day builds strength, control, and cleaner lungs.</div>
+      <button class="start-btn" onclick="acceptChallenge('7-Day Nicotine Break', 'Substance')">Start</button>
+    </div>
+    <div class="challenge-card">
+      <div class="challenge-title"><span class="challenge-icon">🧘</span> Mindful Sip Challenge</div>
+      <div class="challenge-desc">Learn to pause before drinking and ask — “Do I really need this?” Practice mindful awareness and regain control over your choices.</div>
+      <button class="start-btn" onclick="acceptChallenge('Mindful Sip Challenge', 'Substance')">Start</button>
+    </div>
+    <div class="challenge-card">
+      <div class="challenge-title"><span class="challenge-icon">🩺</span> Healthy Lungs Month</div>
+      <div class="challenge-desc">Commit to 30 days of breathing exercises, detox routines, and fitness. Celebrate your lungs’ healing power and feel the energy return to your body.</div>
+      <button class="start-btn" onclick="acceptChallenge('Healthy Lungs Month', 'Substance')">Start</button>
+    </div>
+  </div>
+
+  <h2>Food Addiction Challenges</h2>
+  <div class="challenges-section">
+    <div class="challenge-card">
+      <div class="challenge-title"><span class="challenge-icon">🥗</span> Conscious Bite Challenge</div>
+      <div class="challenge-desc">Eat slowly and with intention — no screens, no rush. Notice every flavor, and learn to stop when you’re truly satisfied.</div>
+      <button class="start-btn" onclick="acceptChallenge('Conscious Bite Challenge', 'Food')">Start</button>
+    </div>
+    <div class="challenge-card">
+      <div class="challenge-title"><span class="challenge-icon">💧</span> Hydration Focus</div>
+      <div class="challenge-desc">Replace cravings with mindful hydration. Every glass of water refreshes your body and helps reset unhealthy habits.</div>
+      <button class="start-btn" onclick="acceptChallenge('Hydration Focus', 'Food')">Start</button>
+    </div>
+    <div class="challenge-card">
+      <div class="challenge-title"><span class="challenge-icon">🍎</span> Healthy Plate Week</div>
+      <div class="challenge-desc">For seven days, fill your plate with nutritious, colorful meals. Fuel your body with balance, not impulse.</div>
+      <button class="start-btn" onclick="acceptChallenge('Healthy Plate Week', 'Food')">Start</button>
+    </div>
+  </div>
+
+  <h2>Work & Study Addiction Challenges</h2>
+  <div class="challenges-section">
+    <div class="challenge-card">
+      <div class="challenge-title"><span class="challenge-icon">🕓</span> Work Cut-off Hour</div>
+      <div class="challenge-desc">Set a fixed time to stop working each day. Create space for relaxation, relationships, and self-care — your mind deserves rest, too.</div>
+      <button class="start-btn" onclick="acceptChallenge('Work Cut-off Hour', 'Work')">Start</button>
+    </div>
+    <div class="challenge-card">
+      <div class="challenge-title"><span class="challenge-icon">🌿</span> Balance Week</div>
+      <div class="challenge-desc">Dedicate this week to balance — include at least one fun or social activity daily. Rediscover joy beyond productivity.</div>
+      <button class="start-btn" onclick="acceptChallenge('Balance Week', 'Work')">Start</button>
+    </div>
+    <div class="challenge-card">
+      <div class="challenge-title"><span class="challenge-icon">📖</span> Pomodoro Focus Challenge</div>
+      <div class="challenge-desc">Work or study in focused bursts with short breaks. Stay productive without burnout, and enjoy a clear, refreshed mind.</div>
+      <button class="start-btn" onclick="acceptChallenge('Pomodoro Focus Challenge', 'Work')">Start</button>
+    </div>
+  </div>
+
+  <h2>Psychological Support & Emotional Wellness Challenges</h2>
+  <div class="challenges-section">
+    <div class="challenge-card">
+      <div class="challenge-title"><span class="challenge-icon">✍️</span> Daily Gratitude Journal</div>
+      <div class="challenge-desc">Write three positive reflections every day. Gratitude shifts your mindset from what’s missing to what’s meaningful.</div>
+      <button class="start-btn" onclick="acceptChallenge('Daily Gratitude Journal', 'Emotional')">Start</button>
+    </div>
+    <div class="challenge-card">
+      <div class="challenge-title"><span class="challenge-icon">🧘</span> 7-Day Calm Mind Challenge</div>
+      <div class="challenge-desc">Practice guided mindfulness each day to reduce stress and find inner peace. A calm mind supports clear, lasting recovery.</div>
+      <button class="start-btn" onclick="acceptChallenge('7-Day Calm Mind Challenge', 'Emotional')">Start</button>
+    </div>
+    <div class="challenge-card">
+      <div class="challenge-title"><span class="challenge-icon">💬</span> Share Your Story</div>
+      <div class="challenge-desc">Join a safe group session to share your journey. Opening up builds courage, connection, and hope for others — and yourself.</div>
+      <button class="start-btn" onclick="acceptChallenge('Share Your Story', 'Emotional')">Start</button>
+    </div>
+  </div>
+</div>
+
+
+</main>
+<script>
+  // Array to store goals
+  const goals = [];
+
+  // Function to accept challenge and add goal + task
+  function acceptChallenge(title, category) {
+    const newGoal = {
+      id: Date.now(),
+      title: title,
+      type: category,
+      specific: '',
+      measure: '',
+      achievable: '',
+      deadline: ''
+    };
+    // Add to goals array
+    goals.push(newGoal);
+    // Add to DOM goals list
+    addGoalToDOM(newGoal);
+    // Add as task in today's tasks
+    addTaskToToday(newGoal);
+    alert(`Challenge "${title}" accepted and added to your goals and today's tasks!`);
+  }
+
+  // Function to add goal to goals list in DOM
+  function addGoalToDOM(goal) {
+    const goalsContainer = document.querySelector('.goals-list');
+    const div = document.createElement('div');
+    div.className = 'goal-item';
+    div.dataset.id = goal.id;
+
+    div.innerHTML = `
+      <div class="goal-title">${goal.title}</div>
+      <div><strong>Category:</strong> ${goal.type}</div>
+      <div class="goal-actions">
+        <button title="Edit" onclick="editGoal(${goal.id})">Edit</button>
+        <button title="Delete" onclick="deleteGoal(${goal.id})">Delete</button>
+        <button title="Save" style="display:none;" onclick="saveGoal(${goal.id})">Save</button>
+      </div>
+    `;
+    document.querySelector('.goals-list').appendChild(div);
+  }
+
+  // Function to add task card to "Today's Tasks"
+  function addTaskToToday(goal) {
+    const todayTasksContainer = document.getElementById('todayTasks');
+    const card = document.createElement('div');
+    card.className = 'task-card';
+    card.id = `task-${goal.id}`;
+    card.innerHTML = `
+      <div class="task-title"><input type="checkbox" class="task-checkbox" /> ${goal.title}</div>
+    `;
+    todayTasksContainer.appendChild(card);
+  }
+
+  // Existing functions (delete, edit, save) can stay below or be modified as needed
+  function deleteGoal(id) {
+    // Remove goal from array
+    const index = goals.findIndex(g => g.id === id);
+    if (index !== -1) goals.splice(index, 1);
+    // Remove DOM elements
+    document.querySelector(`.goal-item[data-id="${id}"]`)?.remove();
+    document.getElementById(`task-${id}`)?.remove();
+  }
+
+  function editGoal(id) {
+    const goalDiv = document.querySelector(`.goal-item[data-id="${id}"]`);
+    if (!goalDiv) return;
+    const buttons = goalDiv.querySelectorAll('button');
+    buttons.forEach(btn => {
+      if (btn.innerText === 'Edit') {
+        btn.style.display = 'none';
+      } else if (btn.innerText === 'Save') {
+        btn.style.display = 'inline-block';
+      }
+    });
+    const children = goalDiv.children;
+    for (let child of children) {
+      if (child.tagName === 'DIV' && child.querySelector('strong')) {
+        const labelText = child.querySelector('strong').innerText;
+        let input;
+        const goal = goals.find(g => g.id == id);
+        switch (labelText) {
+          case 'Category:':
+            input = document.createElement('select');
+            input.innerHTML = `
+              <option value="Digital Addiction" ${goal.type==='Digital Addiction'?'selected':''}>Digital Addiction</option>
+              <option value="Gambling" ${goal.type==='Gambling'?'selected':''}>Gambling</option>
+              <option value="Substance" ${goal.type==='Substance'?'selected':''}>Substance</option>
+              <option value="Food" ${goal.type==='Food'?'selected':''}>Food</option>
+              <option value="Work" ${goal.type==='Work'?'selected':''}>Work & Study</option>
+              <option value="Emotional" ${goal.type==='Emotional'?'selected':''}>Emotional & Support</option>
+            `;
+            break;
+          default:
+            input = document.createElement('input');
+            input.type = 'text';
+            input.value = goal[labelText.toLowerCase().replace(':','')];
+        }
+        child.innerHTML = '';
+        child.appendChild(input);
+      }
+    }
+  }
+
+  function saveGoal(id) {
+    const goalDiv = document.querySelector(`.goal-item[data-id="${id}"]`);
+    if (!goalDiv) return;
+    const inputs = goalDiv.querySelectorAll('input, select');
+    const updatedGoal = { id: id };
+    inputs.forEach(input => {
+      if (input.tagName === 'SELECT') {
+        updatedGoal['type'] = input.value;
+      } else {
+        const labelText = input.previousElementSibling ? input.previousElementSibling.innerText : '';
+        if (labelText.includes('Category')) {
+          // Already handled
+        } else {
+          const key = labelText.toLowerCase().replace(':','');
+          updatedGoal[key] = input.value;
+        }
+      }
+    });
+    // Update goals array
+    const index = goals.findIndex(g => g.id === id);
+    if (index !== -1) {
+      goals[index] = { ...goals[index], ...updatedGoal };
+    }
+    // Re-render static view
+    addGoalToDOM(goals.find(g => g.id === id));
+    // Update checklist
+    const card = document.getElementById(`task-${id}`);
+    if (card) {
+      card.innerHTML = `<input type="checkbox" class="task-checkbox" /> ${updatedGoal.title || goals[index].title}`;
+    }
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Create Account | Addiction Management</title>
+<style>
+  /* Warm, inviting color palette */
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #fff8f0; /* soft peach */
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+
+ .container {
+  max-width: 500px;
+  margin: 40px auto; /* top and bottom margin, auto for sides to center */
+  padding: 40px 50px; /* inside padding for both sides */
+  background: #fff4e1; /* warm tone */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+  h2 {
+    text-align: center;
+    background-color: #ffe0b2; /* warm light orange */
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    color: #d35400; /* warm dark orange */
+  }
+
+  label {
+    margin-top: 10px;
+    font-weight: 600;
+  }
+
+  input[type="text"], input[type="email"], input[type="tel"], input[type="date"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1em;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="tel"]:focus,
+  input[type="date"]:focus,
+  input[type="password"]:focus {
+    border-color: #f39c12; /* warm accent color */
+  }
+
+  small {
+    display: block;
+    margin-top: 5px;
+    color: #555;
+  }
+
+  .privacy-section {
+    margin-top: 15px;
+    padding: 15px;
+    background-color: #fef3e4;
+    border-radius: 8px;
+    border: 1px solid #f0b27a;
+  }
+
+  .privacy-section p {
+    margin: 0 0 10px 0;
+  }
+
+  input[type="checkbox"] {
+    margin-right: 8px;
+  }
+
+  button {
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    font-size: 1.2em;
+    background-color: #f39c12; /* warm orange */
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s;
+  }
+  button:hover {
+    background-color: #d35400;
+    transform: translateY(-1px);
+  }
+
+  #formMessage {
+    margin-top: 15px;
+    color: red;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .support-options {
+    margin-top: 20px;
+    text-align: center;
+  }
+  .support-options a {
+    color: #f39c12;
+    text-decoration: none;
+    margin: 0 10px;
+  }
+  .support-options a:hover {
+    text-decoration: underline;
+  }
+
+  /* Responsive adjustments */
+  @media(max-width: 600px) {
+    body {
+      padding: 10px;
+    }
+  }
+
+  /* Add margin for form fields to create gaps */
+  label {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-weight: 600;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="date"],
+  input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px; /* gap between inputs */
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1em;
+  }
+
+  /* Add margin to the small tag for spacing */
+  small {
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    color: #555;
+  }
+
+  /* Add margin for privacy section */
+  .privacy-section {
+    margin-top: 15px;
+    margin-bottom: 20px; /* gap below privacy section */
+    padding: 15px;
+    background-color: #fef3e4;
+    border-radius: 8px;
+    border: 1px solid #f0b27a;
+  }
+
+  /* Add margin for the support options */
+  .support-options {
+    margin-top: 20px;
+  }
+
+  /* Add margin to the form message */
+  #formMessage {
+    margin-top: 15px;
+  }
+
+  /* Buttons side by side margin */
+  div[style*="display: flex"] {
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+<h2>Register for Support and Care</h2>
+<form id="createAccountForm" onsubmit="return handleRegister()">
+  <!-- Basic Identification -->
+  <label for="fullName">Full Name </label>
+  <input type="text" id="fullName" placeholder="Your Full Name" required />
+
+  <!-- <label for="dob">Date of Birth </label>
+  <input type="date" id="dob" /> -->
+
+  <!-- Contact Information -->
+  <label for="email">Email Address </label>
+  <input type="email" id="email" placeholder="you@example.com" required />
+
+  <label for="phone">Phone Number </label>
+  <input type="tel" id="phone" placeholder="91+" required />
+
+  <!-- Authentication Details -->
+  <label for="password">Password </label>
+  <input type="password" id="password" placeholder="Create Password" required />
+  <small>Password must be at least 6 characters, include number, and special character.</small>
+
+  <label for="confirmPassword">Confirm Password </label>
+  <input type="password" id="confirmPassword" placeholder="Re-enter Password" required />
+
+  <!-- Privacy and Trust -->
+  <div class="privacy-section">
+    <p><strong>Privacy & Trust:</strong> Your data is confidential and protected. Read our <a href="privacy_policy.html" target="_self">Privacy Policy</a>.</p>
+    <label>
+      <input type="checkbox" id="privacyConsent" required />
+      I agree to the Terms of Service and data collection policies.
+    </label>
+    <br/>
+    <label>
+      <input type="checkbox" id="privacyTrust" required />
+      I trust this platform to handle my data responsibly.
+    </label>
+  </div>
+
+  <!-- Submit Button -->
+   <!-- Add this at the appropriate place, e.g., after the form -->
+<!-- <div style="text-align: center; margin-top: 20px;">
+  <button onclick="location.href='addiction_seclection.html'" class="btn">Start</button>
+</div> -->
+</form>
+<!-- Submit Button -->
+   <!-- Add this at the appropriate place, e.g., after the form -->
+<div style="text-align: center; margin-top: 20px;">
+  <button onclick="location.href='addiction_selection.html'" class="btn">Start</button>
+</div>
+
+<div id="formMessage"></div>
+
+<!-- Buttons side by side -->
+<div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
+  <a href="index.html">
+    <button style="padding: 10px 20px; border: none; border-radius: 5px; background-color: #f39c12; color: white; cursor: pointer; font-size: 1em;">Back to Home</button>
+  </a>
+  <!-- <a href="faq.html">
+    <button style="padding: 10px 20px; border: none; border-radius: 5px; background-color: #f39c12; color: white; cursor: pointer; font-size: 1em;">FAQs</button>
+  </a> -->
+</div>
+
+<!-- Support options -->
+<!-- <div class="support-options">
+  <p>Need immediate help? Call our helpline: <a href="tel:123-456-7890">123-456-7890</a></p>
+</div> -->
+
+<script>
+  // Real-time validation for email and phone
+  document.getElementById('email').addEventListener('input', function() {
+    const emailPattern = /^[^@]+@[^@]+\.[^@]+$/;
+    if (!emailPattern.test(this.value.trim())) {
+      this.setCustomValidity('Please enter a valid email address.');
+    } else {
+      this.setCustomValidity('');
+    }
+  });
+
+  document.getElementById('phone').addEventListener('input', function() {
+    const phonePattern = /^\+?\d{7,15}$/;
+    if (!phonePattern.test(this.value.trim())) {
+      this.setCustomValidity('Please enter a valid phone number.');
+    } else {
+      this.setCustomValidity('');
+    }
+  });
+
+  document.getElementById('dob').addEventListener('change', function() {
+    const dobDate = new Date(this.value);
+    const today = new Date();
+    if (dobDate >= today) {
+      this.setCustomValidity('Date of Birth must be in the past.');
+    } else {
+      this.setCustomValidity('');
+    }
+  });
+
+  function handleRegister() {
+    const fullName = document.getElementById('fullName').value.trim();
+    const dob = document.getElementById('dob').value;
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    const privacyConsent = document.getElementById('privacyConsent').checked;
+    const privacyTrust = document.getElementById('privacyTrust').checked;
+
+    // Basic validation
+    if (!fullName || !dob || !email || !phone || !password || !confirmPassword) {
+      showError('Please fill all required fields.');
+      return false;
+    }
+
+    // Password length check
+    if (password.length < 6) {
+      showError('Password must be at least 6 characters.');
+      return false;
+    }
+
+    // Password pattern check
+    const pattern = /^(?=.*\d)(?=.*[\W_]).{6,}$/; // at least 6 chars, includes a digit and special char
+    if (!pattern.test(password)) {
+      showError('Password must include a number and special character.');
+      return false;
+    }
+
+    if (password !== confirmPassword) {
+      showError('Passwords do not match.');
+      return false;
+    }
+
+    if (!privacyConsent || !privacyTrust) {
+      showError('You must agree to the policies.');
+      return false;
+    }
+
+    // Save user data and redirect
+    const userData = {
+      fullName,
+      dob,
+      email,
+      phone,
+      password
+    };
+    localStorage.setItem('user', JSON.stringify(userData));
+    alert(`Thank you, ${fullName}!`);
+    window.location.href='addiction_selection.html';
+    return false;
+  }
+
+  function showError(message) {
+    const msgDiv = document.getElementById('formMessage');
+    msgDiv.textContent = message;
+  }
+</script>
+</div>
+</body>
+</html>

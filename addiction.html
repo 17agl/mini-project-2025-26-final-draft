@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Provide Addiction Details</title>
+<!-- External CSS (optional) -->
+<!-- <link rel="stylesheet" href="styles.css" /> -->
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f9f9;
+    margin: 20px;
+    color: #333;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 0.5em;
+    margin-top: 0;
+    color: #4a4a4a;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+  }
+
+  p {
+    text-align: center;
+    font-size: 1.2em;
+    margin-bottom: 2em;
+    color: #555;
+  }
+
+  .form-container {
+    max-width: 900px;
+    margin: 0 auto 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .addiction-form {
+    border: 2px solid #90caf9;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 25px;
+    background-color: #e3f2fd;
+    transition: all 0.3s;
+  }
+
+  .addiction-form:hover {
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    border-color: #42a5f5;
+  }
+
+  .addiction-form h2 {
+    margin-top: 0;
+    color: #1e88e5;
+    margin-bottom: 15px;
+    font-size: 1.8em;
+    text-align: center;
+  }
+
+  label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 1.1em;
+  }
+
+  input, textarea, select {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1em;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+
+  input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #42a5f5;
+    box-shadow: 0 0 8px rgba(66, 165, 245, 0.3);
+  }
+
+  /* Margin adjustments for sections */
+  h2 {
+    margin-top: 30px;
+    margin-bottom: 15px;
+  }
+
+  /* Buttons container */
+  .buttons {
+    max-width: 900px;
+    margin: 0 auto 50px auto;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  button {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    min-width: 150px;
+  }
+
+  .add-btn {
+    background-color: #66bb6a;
+    color: white;
+  }
+  .add-btn:hover {
+    background-color: #57a05b;
+  }
+
+  .next-btn {
+    background-color: #42a5f5;
+    color: white;
+  }
+  .next-btn:hover {
+    background-color: #1e88e5;
+  }
+</style>
+</head>
+<body>
+
+<h1>Provide Details for Your Addictions</h1>
+<p>Fill in the details for each addiction you've added.</p>
+
+<!-- Dynamic form container -->
+<div class="form-container" id="forms-container"></div>
+
+<!-- Common details section -->
+<h2 style="text-align:center;">Common Details</h2>
+<div class="form-container" style="margin-top:10px;">
+  <label for="current-mood" style="margin-top:20px;">Current Mood</label>
+  <select id="current-mood" style="margin-bottom:20px;">
+    <option value="">Select your mood</option>
+    <option value="happy">Happy</option>
+    <option value="anxious">Anxious</option>
+    <option value="sad">Sad</option>
+    <option value="stressed">Stressed</option>
+    <option value="calm">Calm</option>
+    <!-- Add more as needed -->
+  </select>
+
+  <label for="stress-level">Stress Level (1-10)</label>
+  <input type="number" id="stress-level" min="1" max="10" style="margin-bottom:20px;"/>
+
+  <label for="motivation">Motivation to Recover (1-10)</label>
+  <input type="number" id="motivation" min="1" max="10" style="margin-bottom:20px;"/>
+</div>
+
+<!-- Buttons -->
+<div class="buttons">
+  <button class="add-btn" onclick="window.location.href='addiction_selection.html'">Add Addiction</button>
+  <!-- <button class="next-btn" onclick="proceed()">Proceed</button> -->
+  <button class="next-btn" ><a href="dashboard_tasks.html">Proceed</a></button>
+</div>
+
+<script>
+  // Load selected addictions from localStorage
+  const selectedAddictionsData = JSON.parse(localStorage.getItem('addictions')) || { types: [], subcategories: [] };
+  const addedAddictions = new Set();
+
+  // Generate forms based on selected addictions
+  function addAddictionForm() {
+    const container = document.getElementById('forms-container');
+
+    // For each main type addiction
+    selectedAddictionsData.types.forEach(addiction => {
+      if (!addedAddictions.has(addiction)) {
+        createForm(addiction);
+        addedAddictions.add(addiction);
+      }
+    });
+
+    // For each subcategory addiction
+    selectedAddictionsData.subcategories.forEach(addiction => {
+      if (!addedAddictions.has(addiction)) {
+        createForm(addiction);
+        addedAddictions.add(addiction);
+      }
+    });
+  }
+
+  // Create form for each addiction
+  function createForm(addictionName) {
+    const container = document.getElementById('forms-container');
+
+    const formDiv = document.createElement('div');
+    formDiv.className = 'addiction-form';
+
+    formDiv.innerHTML = `
+      <h2>${addictionName}</h2>
+      <label for="duration-${addictionName}">Duration (how long you've had it)</label>
+      <input type="text" id="duration-${addictionName}" placeholder="e.g., 2 years" />
+
+      <label for="frequency-${addictionName}">Frequency / Intensity</label>
+      <input type="text" id="frequency-${addictionName}" placeholder="e.g., daily, weekly" />
+
+      <label for="triggers-${addictionName}">Main Triggers</label>
+      <input type="text" id="triggers-${addictionName}" placeholder="e.g., stress, boredom" />
+
+      <label for="past-attempts-${addictionName}">Past Attempts to Quit</label>
+      <select id="past-attempts-${addictionName}">
+        <option value="">Select</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+    `;
+    container.appendChild(formDiv);
+  }
+
+  // Initialize forms on page load
+  window.onload = addAddictionForm;
+
+  // Save all data and navigate
+  function proceed() {
+    const detailsData = {};
+
+    // Collect data for each addiction
+    document.querySelectorAll('.addiction-form').forEach(form => {
+      const title = form.querySelector('h2').innerText;
+
+      // Get all inputs for this addiction
+      const content = document.querySelector(`#content-${title}`).value.trim();
+      const duration = document.querySelector(`#duration-${title}`).value.trim();
+      const frequency = document.querySelector(`#frequency-${title}`).value.trim();
+      const triggers = document.querySelector(`#triggers-${title}`).value.trim();
+      const pastAttempts = document.querySelector(`#past-attempts-${title}`).value;
+
+      detailsData[title] = {
+        content,
+        duration,
+        frequency,
+        triggers,
+        pastAttempts
+      };
+    });
+
+    // Get common details
+    const currentMood = document.getElementById('current-mood').value;
+    const stressLevel = document.getElementById('stress-level').value;
+    const motivation = document.getElementById('motivation').value;
+
+    // Save all data in localStorage
+    localStorage.setItem('addictionDetails', JSON.stringify(detailsData));
+    localStorage.setItem('commonDetails', JSON.stringify({ currentMood, stressLevel, motivation }));
+
+    alert('Your addiction details and common details have been saved.');
+    window.location.href='dashboard_home.html'; // Redirect to dashboard
+  }
+</script>
+
+</body>
+</html>
